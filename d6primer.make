@@ -1,7 +1,15 @@
-core = 6.x
-api = 2
+; ************************
+; CORE
+; ************************
 
-projects[drupal][version] = 6.24
+core = "6.x"
+api = "2"
+
+;projects[drupal][version] = 6.24
+
+; ************************
+; CONTRIB MODULES
+; ************************
 
 projects[admin_menu][subdir] = contrib
 projects[adminrole][subdir] = contrib
@@ -63,6 +71,9 @@ projects[backup_migrate][subdir] = contrib
 projects[strongarm][subdir] = contrib
 projects[features][subdir] = contrib
 
+; ************************
+; LIBRARIES
+; ************************
 
 libraries[tinymce][download][type] = "get"
 libraries[tinymce][download][url] = "http://drupal.ncsu.edu/resources/libraries/tinymce/tinymce_3.4.7.zip"
@@ -70,6 +81,10 @@ libraries[tinymce][directory_name] = "tinymce"
 
 libraries[jquery.ui][download][type] = "file"
 libraries[jquery.ui][download][url] = "http://drupal.ncsu.edu/resources/libraries/jquery.ui/jquery-ui-1.7.3.zip"
+
+; ************************
+; NC STATE MODULES & THEMES
+; ************************
 
 projects[primer][subdir] = "ncstate"
 projects[primer][location] = "http://drupal.ncsu.edu/features/fserver"
@@ -85,6 +100,10 @@ projects[ncsuphplibrary][location] = "http://drupal.ncsu.edu/features/fserver"
 
 projects[ncsuroles][subdir] = "ncstate"
 projects[ncsuroles][location] = "http://drupal.ncsu.edu/features/fserver"
+
+; ************************
+; NC STATE FEATURES
+; ************************
 
 projects[primer_home_page_slider][subdir] = "ncstate/features"
 projects[primer_home_page_slider][location] = http://drupal.ncsu.edu/features/fserver
