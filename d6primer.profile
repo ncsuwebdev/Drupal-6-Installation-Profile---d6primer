@@ -113,6 +113,7 @@ function d6primer_profile_modules() {
 function d6primer_profile_task_list() {
   return array(
     'task_configure_theme' => st('Configure Theme'),
+    'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
 
@@ -130,6 +131,7 @@ function d6primer_profile_task_list() {
  *   An optional HTML string to display to the user. Only used if you
  *   modify the $task, otherwise discarded.
  */
+
 function d6primer_profile_tasks(&$task, $url) {
   // Run 'profile' task
   if ($task == 'profile') {
@@ -137,12 +139,21 @@ function d6primer_profile_tasks(&$task, $url) {
     module_disable(array('update'));
     $task = 'task_configure_theme';
     watchdog('d6primer_profile', 'running profile task');
-  };
+  }
 
   // Run 'task_configure_theme' task
   if ($task == 'task_configure_theme') {
-    configure_theme();
+  	configure_theme();
+  	$task = 'task_configure_cleanup';
   }
+  
+  // Run 'task_configure_cleanup' task
+  if ($task == 'task_configure_cleanup') {
+    drupal_flush_all_caches();
+    drupal_cron_run();
+    $task = 'profile-finished';
+  }
+  
 }
 
 /**
@@ -193,7 +204,4 @@ function configure_theme() {
     
   }
   watchdog('d6primer_profile', 'Configured blocks');
-
 }
-
-
