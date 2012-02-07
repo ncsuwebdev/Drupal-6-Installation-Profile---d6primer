@@ -57,6 +57,7 @@ function d6primer_profile_modules() {
     'block_access',
     'captcha',
     'content',
+    'css_injector',
     'ctools',
     'extlink',
     'features',
@@ -69,10 +70,12 @@ function d6primer_profile_modules() {
     'imce_mkdir',
     'imce_wysiwyg',
     'imce',
+  	'jquery_ui',
     'libraries',
     'masquerade',
     'menu_block',
     'menu_breadcrumb',
+    'nodeaccess',
     'nodewords_basic',
     'nodewords_tokens',
     'nodewords_ui',
@@ -80,14 +83,16 @@ function d6primer_profile_modules() {
     'path_redirect',
     'pathauto',
     'recaptcha',
+  	'role_delegation',
+  	'shadowbox',
   	'strongarm',
     'token',
     'vertical_tabs',
     'views',
   	'views_ui',
     'webform',
+  	'webform_validation',
   	'wysiwyg',
-  	
   );
   $custom_modules = array(
   	'ncstatebrandingbar',
@@ -144,7 +149,13 @@ function d6primer_profile_tasks(&$task, $url) {
   // Run 'task_configure_theme' task
   if ($task == 'task_configure_theme') {
   	configure_theme();
-  	$task = 'task_configure_cleanup';
+  	$task == 'task_configure_editor'
+  }
+  
+  // Run 'task_configure_editor' task
+  if ($task == 'task_configure_editor') {
+    configure_editor();
+    $task = 'task_configure_cleanup';
   }
   
   // Run 'task_configure_cleanup' task
@@ -204,4 +215,83 @@ function configure_theme() {
     
   }
   watchdog('d6primer_profile', 'Configured blocks');
+}
+
+/**
+ * Configure Editor Task
+ */
+function configure_editor() {
+  $tiny_conf = get_tinymce_conf();
+
+  $result = db_query("INSERT INTO {wysiwyg}
+                      (format, editor, settings)
+                      VALUES (%d, '%s', '%s')",
+                      1, 'tinymce', serialize($tiny_conf));
+
+  $result = db_query("INSERT INTO {wysiwyg}
+                      (format, editor, settings)
+                      VALUES (%d, '%s', '%s')",
+                      2, 'tinymce', serialize($tiny_conf));
+  watchdog('d6primer_profile', 'Configured tinymce');
+
+  $imce_roles_profiles = array(
+    3 => array('pid' => 1),
+    2 => array('pid' => 2),
+    1 => array('pid' => 0),
+  );
+  variable_set('imce_roles_profiles', $imce_roles_profiles);
+
+  $imce_profiles = array(
+    1 => array(
+      'name'=> 'User-1',
+      'usertab'=> 1,
+      'filesize'=> 0,
+      'quota'=> 0,
+      'tuquota'=> 0,
+      'extensions'=> '*',
+      'dimensions'=> 0,
+      'filenum'=> 0,
+      'directories'=> array(
+        0 => array(
+          'name' => '.',
+          'subnav' => 1,
+          'browse' => 1,
+          'upload' => 1,
+          'thumb' => 1,
+          'delete' => 1,
+          'resize' => 1,
+          'mkdir' => 1,
+          'rmdir' => 1,
+      )),
+      'thumbnails' => array(),
+      'mkdirnum' => 0
+    ),
+    2 => array(
+      'name'=> 'Global',
+      'usertab'=> 1,
+      'filesize'=> 0,
+      'quota'=> 500,
+      'tuquota'=> 500,
+      'extensions'=> '*',
+      'dimensions'=> 0,
+      'filenum'=> 0,
+      'directories'=> array(
+        0 => array(
+          'name' => '.',
+          'subnav' => 1,
+          'browse' => 1,
+          'upload' => 1,
+          'thumb' => 1,
+          'delete' => 1,
+          'resize' => 1,
+          'mkdir' => 1,
+          'rmdir' => 1,
+      )),
+      'thumbnails' => array(),
+      'mkdirnum' => 0
+    ),
+  );
+  variable_set('imce_profiles', $imce_profiles);
+  watchdog('d6primer_profile', 'Configured imce');
+
 }
