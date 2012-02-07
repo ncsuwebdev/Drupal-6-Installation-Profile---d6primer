@@ -9,6 +9,7 @@
 include_once('d6primer.tinymce.inc');
 include_once('d6primer.permissions.inc');
 include_once('d6primer.users.inc');
+include_once('d6primer.nodewords.inc');
 include_once('d6primer.backup_migrate.inc');
 
 /**
@@ -84,7 +85,8 @@ function d6primer_profile_modules() {
   	'role_delegation',
   	'shadowbox',
   	'strongarm',
-    'token',
+    'taxonomy',
+  	'token',
     'vertical_tabs',
     'views',
   	'views_ui',
@@ -117,6 +119,9 @@ function d6primer_profile_task_list() {
   return array(
     'task_configure_theme' => st('Configure Theme'),
   	'task_configure_editor' => st('Configure Editor'),
+  	'task_configure_variables' => st('Configure Variables'),
+  	'task_configure_users' => st('Configure Users'),
+  	'task_configure_nodewords' => st('Configure Nodewords'),
     'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
@@ -154,6 +159,24 @@ function d6primer_profile_tasks(&$task, $url) {
   // Run 'task_configure_editor' task
   if ($task == 'task_configure_editor') {
     configure_editor();
+    $task = 'task_configure_variables';
+  }
+  
+  // Run 'task_configure_editor' task
+  if ($task == 'task_configure_variables') {
+    configure_variables();
+    $task = 'task_configure_users';
+  }
+  
+  // Run 'task_configure_users' task
+  if ($task == 'task_configure_users') {
+    configure_users();
+    $task = 'task_configure_nodewords';
+  }
+  
+  // Run 'task_configure_nodewords' task
+  if ($task == 'task_configure_nodewords') {
+    configure_nodewords();
     $task = 'task_configure_cleanup';
   }
   
@@ -293,4 +316,194 @@ function configure_editor() {
   variable_set('imce_profiles', $imce_profiles);
   watchdog('d6primer_profile', 'Configured imce');
 
+}
+
+/**
+ * Configure Variables Task
+ */
+function configure_variables() {
+  
+  // Configuring date formats
+  variable_set('date_default_timezone', '-14400');
+  variable_set('date_first_day', '0');
+  variable_set('date_format_long', 'l, F j, Y - g:ia');
+  variable_set('date_format_long_custom', 'l, F j, Y - H:i');
+  variable_set('date_format_medium', 'D, m/d/Y - g:ia');
+  variable_set('date_format_medium_custom', 'D, m/d/Y - H:i');
+  variable_set('date_format_short', 'm/d/Y - g:ia');
+  variable_set('date_format_short_custom', 'm/d/Y - H:i');
+  watchdog('d6primer_profile', 'Configured date/time formats');
+
+  // Configures file system 
+  variable_set('file_directory_temp', '/tmp');
+  variable_set('upload_uploadsize_default', 5);
+  variable_set('upload_usersize_default', 1024);
+  watchdog('d6primer_profile', 'Configured file system settings');
+
+  // Configures cache settings
+  variable_set('page_compression', '0');
+  variable_set('block_cache', '0');
+  variable_set('cache', '0');
+  watchdog('d6primer_profile', 'Configured cache settings');
+
+  // Configure user registration
+  variable_set('user_email_verification', 0);
+  variable_set('user_register', 0);
+  variable_set('user_mail_status_activated_notify', 0);
+  watchdog('d6primer_profile', 'Configured users');
+
+  // Configure path auto patterns
+  variable_set('pathauto_node_pattern', '[menupath-raw]');
+  watchdog('d6primer_profile', 'Configured path auto settings');
+
+  // Setting 404 page
+  variable_set('site_404', 'notfound');
+  watchdog('d6primer_profile', 'Configured 404 page');
+
+  // Create the menu block for secondary navigation
+  variable_set('menu_block_ids', array(0 => 1));
+  variable_set('menu_block_1_admin_title', 'Primary links (levels 2+)');
+  variable_set('menu_block_1_depth', '0');
+  variable_set('menu_block_1_expanded', 0);
+  variable_set('menu_block_1_follow', 0);
+  variable_set('menu_block_1_level', "2");
+  variable_set('menu_block_1_parent', "primary-links:0");
+  variable_set('menu_block_1_sort', 0);
+  variable_set('menu_block_1_title_link', 0);
+  watchdog('d6primer_profile', 'Configured menu blocks');
+
+  // Concigure input formats
+  variable_set('allowed_html_1', '<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <p> <span> <img> <div> <h3> <h4> <h5> <h6> <br> <blockquote> <table> <tbody> <tr> <th> <td> <sup> <sub>');
+  watchdog('d6primer_profile', 'Configured input formats');
+
+  // Configure shadowbox settings
+  variable_set('shadowbox_location', 'profiles/d6primer/libraries/shadowbox');
+  watchdog('d6primer_profile', 'Configured shadowbox library');
+
+  // Configure view settings
+  variable_set('views_hide_help_message', "1");
+  watchdog('d6primer_profile', 'Configured views settings');
+
+  // Configure menu_breadcrumb settings
+  variable_set('menu_breadcrumb_append_node_url', 0);
+  watchdog('d6primer_profile', 'Configured menu_breadcrumb settings');
+
+  // Configure extlinks settings
+  variable_set('extlink_target', '_blank');
+  variable_set('extlink_subdomains', 1);
+  watchdog('d6primer_profile', 'Configured extlinks settings');
+
+}
+
+/**
+ * Configure Users Task
+ */
+function configure_users() {
+  $permissions = array(
+    'moderator' => get_moderator_permissions(),
+    'anonymous user' => get_anonymous_permissions(),
+  );
+  foreach ($permissions as $role => $perms) {
+    // Add the role and get the role id.
+    if ($role != 'anonymous user') {
+      db_query("INSERT INTO {role} (name) VALUES ('%s')", $role);
+    }
+    $rid = db_result(db_query("SELECT rid FROM {role} WHERE name = '%s'", $role));
+    
+    // Remove any existing permissions
+    db_query('DELETE FROM {permission} WHERE rid = %d', $rid);
+
+    // Add new permissions
+    db_query("INSERT INTO {permission} (rid, perm) VALUES (%d, '%s')", $rid, implode(', ', $perms));
+  }
+
+  $users = array(
+    'njyoung.ncsu.edu' => array(
+      'name' => 'njyoung.ncsu.edu',
+      'pass' => '762142b0ed2513b3c4106536a0328278',
+      'email' => 'njyoung@ncsu.edu'
+    ),
+    'jmriehle.ncsu.edu' => array(
+      'name' => 'jmriehle.ncsu.edu',
+      'pass' => '762142b0ed2513b3c4106536a0328278',
+      'email' => 'jmriehle@ncsu.edu'
+    ),
+  );
+
+  foreach ($users as $user) {
+    create_new_admin_user($user['name'], $user['pass'], $user['email']);
+  };
+
+  // Creates default users
+  watchdog('d6primer_profile', 'running task_configure_users task');
+}
+
+/**
+ * Configures nodewords
+ */
+function configure_nodewords() {
+
+  $tables = array(
+    'canonical' => array(
+      'value' => '[node-url]',
+    ),
+    'abstract' => array(
+      'value' => '',
+    ),
+    'copyright' => array(
+      'value' => 'Copyright [site-date-yyyy] North Carolina State University. All rights reserved.',
+    ),
+    'description' => array(
+      'value' => '',
+    ),
+    'keywords' => array(
+      'value' => '',
+    ),
+    'revisit-after' => array(
+      'value' => '5',
+    ),
+    'robots' => array(
+      'index_follow' => 'index,follow',
+      'value' => array(
+        'noarchive' => 0,
+        'noodp' => 0,
+        'nosnippet' => 0,
+        'noydir' => 0,
+      ),
+    ),
+  );
+
+  foreach($tables as $name => $value) {
+    $result = db_query("INSERT INTO {nodewords}
+                        (type, id, name, content)
+                        VALUES (%d, %d, '%s', '%s')",
+                        1, 0, $name, serialize($value));
+  }
+
+  $nodewords_head = array(
+    'canonical' => 'canonical',
+    'copyright' => 'copyright',
+    'description' => 'description',
+    'keywords' => 'keywords',
+    'revisit-after' => 'revisit-after',
+    'robots' => 'robots',
+    'abstract' => '0',
+  );
+  variable_set('nodewords_head', $nodewords_head);
+
+  $nodewords_ui_edit = array(
+    'description' => 'description',
+    'keywords' => 'keywords',
+    'revisit-after' => 'revisit-after',
+    'abstract' => 0,
+    'canonical' => 0,
+    'copyright' => 0,
+    'robots' => 0,
+  );
+  variable_set('nodewords_ui_edit', $nodewords_ui_edit);
+  variable_set('nodewords_ui_use_default_value_canonical', 'always');
+  variable_set('nodewords_ui_use_default_value_copyright', 'always');
+  variable_set('nodewords_use_alt_attribute', '1');
+
+  watchdog('d6primer_profile', 'running task_configure_nodewords task');
 }
