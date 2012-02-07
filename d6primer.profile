@@ -122,7 +122,9 @@ function d6primer_profile_task_list() {
   	'task_configure_variables' => st('Configure Variables'),
   	'task_configure_users' => st('Configure Users'),
   	'task_configure_nodewords' => st('Configure Nodewords'),
-	'task_configure_backup_migrate' => st('Configure Backup/Migrate'),
+	'task_configure_contact' => st('Configure Contact Form'),
+    'task_configure_captcha' => st('Configure Captcha/Recaptcha'),
+    'task_configure_backup_migrate' => st('Configure Backup/Migrate'),
   	'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
