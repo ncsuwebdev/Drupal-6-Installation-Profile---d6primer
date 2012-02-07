@@ -122,7 +122,8 @@ function d6primer_profile_task_list() {
   	'task_configure_variables' => st('Configure Variables'),
   	'task_configure_users' => st('Configure Users'),
   	'task_configure_nodewords' => st('Configure Nodewords'),
-    'task_configure_cleanup' => st('Running cleanup tasks'),
+	'task_configure_backup_migrate' => st('Configure Backup/Migrate'),
+  	'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
 
@@ -177,6 +178,24 @@ function d6primer_profile_tasks(&$task, $url) {
   // Run 'task_configure_nodewords' task
   if ($task == 'task_configure_nodewords') {
     configure_nodewords();
+    $task = 'task_configure_contact';
+  }
+  
+  // Run 'task_configure_contact' task
+  if ($task == 'task_configure_contact') {
+    configure_contact();
+    $task = 'task_configure_captcha';
+  }
+
+  // Run 'task_configure_contact' task
+  if ($task == 'task_configure_captcha') {
+    configure_captcha();
+    $task = 'task_configure_backup_migrate';
+  }
+
+  // Run 'task_configure_backup_migrate' task
+  if ($task == 'task_configure_backup_migrate') {
+    configure_backup_migrate();
     $task = 'task_configure_cleanup';
   }
   
@@ -506,4 +525,69 @@ function configure_nodewords() {
   variable_set('nodewords_use_alt_attribute', '1');
 
   watchdog('d6primer_profile', 'running task_configure_nodewords task');
+}
+
+/**
+ * Configures contact form
+ */
+function configure_contact() {
+  $result = db_query("INSERT INTO {contact}
+                      (category, recipients, selected)
+                      VALUES ('%s', '%s', %d)",
+                      'Website Administrator', 'njyoung+d6primer_contact_form@ncsu.edu', 1);
+
+  watchdog('d6primer_profile', 'Configured contact form');
+}
+
+/**
+ * Configures captcha and recaptcha
+ */
+function configure_captcha() {
+
+  // Configure captcha/recaptcha settings
+  variable_set('captcha_add_captcha_description', 0);
+  variable_set('captcha_allow_on_admin_pages', 0);
+  variable_set('captcha_default_challenge', 'recaptcha/reCAPTCHA');
+  variable_set('captcha_default_validation', 1);
+  variable_set('captcha_administration_mode', 0);
+  variable_set('recaptcha_ajax_api', 1);
+  variable_set('recaptcha_private_key', '6LdvWc0SAAAAAHytAais_ARotfgOpYx9320JSsrK');
+  variable_set('recaptcha_public_key', '6LdvWc0SAAAAAJZF0eyUtotIiq9bBWFBh3CuJGgx');
+  variable_set('recaptcha_theme', 'white');
+
+  $types = array(
+    array(
+      'form_id' => 'comment_form',
+      'captcha_type' => 'default',
+    ),
+    array(
+      'form_id' => 'contact_mail_page',
+      'captcha_type' => 'default',
+    ),
+    array(
+      'form_id' => 'contact_mail_user',
+      'captcha_type' => 'default',
+    ),
+  );
+
+  // Clear everything from the table because i'm lazy and don't want to write any
+  // SQL update scripts
+  db_query("TRUNCATE TABLE {captcha_points}");
+  foreach ($types as $type) {
+    $result = db_query("INSERT INTO {captcha_points}
+                        (form_id, captcha_type)
+                        VALUES ('%s', '%s')",
+                        $type['form_id'], $type['captcha_type']);
+  };
+  watchdog('d6primer_profile', 'Configured captcha');
+}
+
+/**
+ * Configures backup and migrate
+ */
+function configure_backup_migrate() {
+  gen_backup_migrate_profile();
+  gen_backup_migrate_destinations();
+  gen_backup_migrate_schedules();
+  watchdog('d6primer_profile', 'Configured backup and migrate');
 }

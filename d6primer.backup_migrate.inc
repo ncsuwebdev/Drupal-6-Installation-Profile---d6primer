@@ -13,9 +13,9 @@ function gen_backup_migrate_profile() {
   $filters = array(
     'compression' => 'gzip',
     'notify_success_enable' => 0,
-    'notify_success_email' => 'njyoung@ncsu.edu',
+    'notify_success_email' => 'njyoung+d6primer_backup_migrate@ncsu.edu',
     'notify_failure_enable' => 1,
-    'notify_failure_email' => 'njyoung@ncsu.edu',
+    'notify_failure_email' => 'njyoung+d6primer_backup_migrate@ncsu.edu',
     'utils_site_offline' => 0,
     'utils_site_offline_message' => 'This site is temporarily unavailble due to backup maintenance',
     'exclude_tables' => array(),
