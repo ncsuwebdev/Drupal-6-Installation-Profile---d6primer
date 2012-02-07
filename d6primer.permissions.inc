@@ -16,6 +16,8 @@ function get_moderator_permissions() {
     'access administration pages',
     'access content',
     'access site-wide contact form',
+    'Configure all blocks',
+  	'Configure all role settings',
     'Configure all page settings',
     'Configure all specific settings',
     'Create blocks',
@@ -23,6 +25,7 @@ function get_moderator_permissions() {
     'Enable all blocks',
     'Move all blocks',
     'View all blocks',
+    'administer site-wide contact form',
     'create images',
     'delete any images',
     'delete own images',
@@ -34,6 +37,10 @@ function get_moderator_permissions() {
     'view uploaded files',
     'edit meta tags',
     'skip CAPTCHA',
+    'assign moderator role',
+    'administer taxonomy',
+  	'administer views',
+  	'access all webform results',
   );
 }
 
@@ -43,7 +50,23 @@ function get_moderator_permissions() {
 function get_anonymous_permissions() {
   return array(
     'access content',
+    'search content',
     'view uploaded files',
+  	'access all views', 
+  	'access site-wide contact form',
+  );
+}
+
+/**
+ * Permissions for Authenticated Users
+ */
+function get_authenticated_permissions() {
+  return array(
+    'access content',
+    'search content',
+    'view uploaded files',
+  	'access all views',
+  	'access site-wide contact form', 
   );
 }
 

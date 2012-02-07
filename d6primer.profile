@@ -344,6 +344,9 @@ function configure_editor() {
  */
 function configure_variables() {
   
+  //configure clean urls
+  variable_set('clean_url', 1);	
+	
   // Configuring date formats
   variable_set('date_default_timezone', '-14400');
   variable_set('date_first_day', '0');
@@ -423,6 +426,7 @@ function configure_users() {
   $permissions = array(
     'moderator' => get_moderator_permissions(),
     'anonymous user' => get_anonymous_permissions(),
+  	'authenticated user' => get_authenticated_permissions(),
   );
   foreach ($permissions as $role => $perms) {
     // Add the role and get the role id.
