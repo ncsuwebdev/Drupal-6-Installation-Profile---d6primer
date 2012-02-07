@@ -47,7 +47,7 @@ function d6primer_profile_modules() {
     'taxonomy',
     'upload',
     'user',
-	'filter',
+	'filter', 
   );
   $contrib_modules = array(
     'admin_menu',
