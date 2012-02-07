@@ -70,12 +70,10 @@ function d6primer_profile_modules() {
     'imce_mkdir',
     'imce_wysiwyg',
     'imce',
-  	'jquery_ui',
     'libraries',
     'masquerade',
     'menu_block',
     'menu_breadcrumb',
-    'nodeaccess',
     'nodewords_basic',
     'nodewords_tokens',
     'nodewords_ui',
@@ -118,6 +116,7 @@ function d6primer_profile_modules() {
 function d6primer_profile_task_list() {
   return array(
     'task_configure_theme' => st('Configure Theme'),
+  	'task_configure_editor' => st('Configure Editor'),
     'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
@@ -149,7 +148,7 @@ function d6primer_profile_tasks(&$task, $url) {
   // Run 'task_configure_theme' task
   if ($task == 'task_configure_theme') {
   	configure_theme();
-  	$task == 'task_configure_editor'
+  	$task = 'task_configure_editor';
   }
   
   // Run 'task_configure_editor' task
