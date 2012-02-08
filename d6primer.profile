@@ -120,13 +120,14 @@ function d6primer_profile_task_list() {
     'task_configure_theme' => st('Configure Theme'),
   	'task_configure_editor' => st('Configure Editor'),
   	'task_configure_variables' => st('Configure Variables'),
-  	'task_configure_users' => st('Configure Users'),
+  	'task_configure_users' => st('Configure Admin Users'),
   	'task_configure_nodewords' => st('Configure Nodewords'),
 	'task_configure_contact' => st('Configure Contact Form'),
     'task_configure_captcha' => st('Configure Captcha/Recaptcha'),
     'task_configure_backup_migrate' => st('Configure Backup/Migrate'),
   	'task_enable_feature_primer_home_page_slider' => st('Enable Home Page Slider Feature'),
   	'task_configure_feature_primer_home_page_slider' => st('Configure Home Page Slider Feature'),
+    'task_create_first_node' => st('Create First Node / Set as Home Page'),
   	'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
@@ -212,6 +213,12 @@ function d6primer_profile_tasks(&$task, $url) {
   // Run 'task_configure_feature_primer_home_page_slider' task
   if ($task == 'task_configure_feature_primer_home_page_slider') {
     configure_feature_primer_home_page_slider();
+    $task = 'task_create_first_node';
+  }
+  
+  // Run 'task_create_first_node' task
+  if ($task == 'task_create_first_node') {
+    create_first_node();
     $task = 'task_configure_cleanup';
   }
   
@@ -358,6 +365,8 @@ function configure_editor() {
  */
 function configure_variables() {
   
+  
+	
   //configure clean urls
   variable_set('clean_url', 1);	
 	
@@ -464,8 +473,13 @@ function configure_users() {
     ),
     'jmriehle.ncsu.edu' => array(
       'name' => 'jmriehle.ncsu.edu',
-      'pass' => '762142b0ed2513b3c4106536a0328278',
+      'pass' => '762142b0efdsafdsafsda4106536a0328278',
       'email' => 'jmriehle@ncsu.edu'
+    ),
+    'vjbuchan.ncsu.edu' => array(
+      'name' => 'vjbuchan.ncsu.edu',
+      'pass' => '762142b0effdsafdsa4106536a0328278',
+      'email' => 'vjbuchan@ncsu.edu'
     ),
   );
 
@@ -664,3 +678,29 @@ function configure_feature_primer_home_page_slider() {
 	watchdog('d6primer_profile', 'Configured home page slider feature');
 	
 };
+
+function create_first_node() {
+
+	$node = new StdClass();
+	//creating a bare node
+	
+	$node->type = 'page';
+	//giving it type
+	
+	$node->status = 1;
+	//give it a published staus
+	
+	$node->title = "Welcome";
+	//gives title
+	
+	$node->body = "This is a brand new website. An Administrator still needs to log in and update some content.";
+	//gives body
+	
+	node_save($node);
+	//save it and give it the rest of the attributes
+	
+	 variable_set('site_frontpage', 'node/1');	
+  
+  watchdog('d6primer_profile', 'Added first node and set as home page');
+
+}
