@@ -825,7 +825,7 @@ function configure_blocks() {
 	    'search' => array(
 	      'module' => 'search',
 	      'delta' => '0',
-	      'theme' => $theme,
+	      'theme' => get_theme_name(),
 	      'status' => 1,
 	      'region' => 'header_search',
 	      'title' => 'Search',
@@ -834,7 +834,7 @@ function configure_blocks() {
 	    'wraplogin_block' => array(
 	      'module' => 'wraplogin',
 	      'delta' => '0',
-	      'theme' => $theme,
+	      'theme' => get_theme_name(),
 	      'status' => 1,
 	      'region' => 'left_below_menu',
 	      'title' => 'UNITY/WRAP LOGIN',
