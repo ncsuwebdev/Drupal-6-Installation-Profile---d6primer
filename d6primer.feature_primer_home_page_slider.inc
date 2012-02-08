@@ -10,7 +10,13 @@ function enable_feature_primer_home_page_slider() {
   	
   	module_enable($enable_modules);
   	
-  	$vid = db_query("SELECT vid FROM {vocabulary} WHERE name = 'Syndication'")->fetchField();
+  	$sqlcond = "name = 'Syndication'";
+	$query = db_query("SELECT * FROM {vocabulary} WHERE $sqlcond");
+	
+	
+	while ($row = db_fetch_array($query)) {
+		$vid = $row['vid'];
+	}
   	
   	$term = array(
 		'vid' => $vid, // Vocabulary ID
