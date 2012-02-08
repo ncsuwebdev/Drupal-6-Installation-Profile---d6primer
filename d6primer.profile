@@ -11,7 +11,6 @@ include_once('d6primer.permissions.inc');
 include_once('d6primer.users.inc');
 include_once('d6primer.nodewords.inc');
 include_once('d6primer.backup_migrate.inc');
-include_once('d6primer.feature_primer_home_page_slider.inc');
 
 /**
  * Returns a description of the profile for the initial installation screen
@@ -126,7 +125,8 @@ function d6primer_profile_task_list() {
 	'task_configure_contact' => st('Configure Contact Form'),
     'task_configure_captcha' => st('Configure Captcha/Recaptcha'),
     'task_configure_backup_migrate' => st('Configure Backup/Migrate'),
-  	'task_enable_feature_primer_home_page_slider' => st('Configure Home Page Slider Feature'),
+  	'task_enable_feature_primer_home_page_slider' => st('Enable Home Page Slider Feature'),
+  	'task_configure_feature_primer_home_page_slider' => st('Configure Home Page Slider Feature'),
   	'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
@@ -203,15 +203,20 @@ function d6primer_profile_tasks(&$task, $url) {
     $task = 'task_enable_feature_primer_home_page_slider';
   }
   
-  // Run 'task_configure_backup_migrate' task
+  // Run 'task_enable_feature_primer_home_page_slider' task
   if ($task == 'task_enable_feature_primer_home_page_slider') {
     enable_feature_primer_home_page_slider();
+    $task = 'task_configure_feature_primer_home_page_slider';
+  }
+  
+  // Run 'task_configure_feature_primer_home_page_slider' task
+  if ($task == 'task_configure_feature_primer_home_page_slider') {
+    configure_feature_primer_home_page_slider();
     $task = 'task_configure_cleanup';
   }
   
   // Run 'task_configure_cleanup' task
   if ($task == 'task_configure_cleanup') {
-    
   	drupal_flush_all_caches();
     drupal_cron_run();
     $task = 'profile-finished';
@@ -606,3 +611,56 @@ function configure_backup_migrate() {
   gen_backup_migrate_schedules();
   watchdog('d6primer_profile', 'Configured backup and migrate');
 }
+
+/**
+ * Enables home page slider feature, generates the taxonomy term(s) required
+ */
+function enable_feature_primer_home_page_slider() {
+    $enable_modules = array(
+  		'primer_home_page_slider',
+  	);
+  	
+  	module_enable($enable_modules);
+
+  	watchdog('d6primer_profile', 'Enabled home page slider feature');
+};
+
+/**
+ * Configures home page slider
+ */
+function configure_feature_primer_home_page_slider() {
+    
+	/*
+	 *  @todo change this to actually look up the correct value.
+	 *  
+	 *  Worked on this for a long time, but cannot get the query to work
+	 *  because the feature schema (i think) isn't ready yet, so there's
+	 *  no value in the DB when this runs.
+	 *  
+	 *  So for now...just manualy insert of the term with a parent id of 1
+	 *  as it should be the only vocabulary
+	 *  
+	 *  This will break things though if another module/feature is added that
+	 *  also create vocabularies
+	 * 
+	 */
+	
+	/*
+	$name = 'Syndication';
+	$limit = 1;
+	$query = db_query("SELECT * FROM {vocabulary} WHERE name = '%s' LIMIT %d", $name, $limit);    
+	while ($row = db_fetch_array($query)) { // this returns the row as an array, use db_fetch_object to get an object
+	  $vid = $row['vid'];
+	}
+	*/
+	
+  	$term = array(
+		'vid' => 1, // Vocabulary ID
+		'name' => 'Home Page Slider', // Term Name
+	);
+	
+	taxonomy_save_term($term);
+          
+	watchdog('d6primer_profile', 'Configured home page slider feature');
+	
+};
