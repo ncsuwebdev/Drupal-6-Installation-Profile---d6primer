@@ -14,16 +14,11 @@ function enable_feature_primer_home_page_slider() {
 	$myVid = $vocab_object->vid;
   	
   	$term = array(
-            'vid' => $myVid, // Voacabulary ID
-            'name' => 'Home Page Slider', // Term Name
-            'synonyms' => NULL, // (Optional) Synonym of this term
-            'parent' => NULL, // (Optional) Term ID of a parent term
-            'relations' => NULL, // (Optional) Related Term IDs
-          );
-	taxonomy_save_term($term);
+		'vid' => $myVid, // Vocabulary ID
+		'name' => 'Home Page Slider', // Term Name
+	);
+	return taxonomy_save_term($term);
           
-	return true;
-	
 };
 
 
