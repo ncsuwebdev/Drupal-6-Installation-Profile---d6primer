@@ -99,8 +99,8 @@ function d6primer_profile_modules() {
   	'ncsuphplibrary',  
     'ncsuroles',
   	'wraplogin',
-  	'primer_home_page_slider',
   );
+  
   return array_merge($core_modules, $contrib_modules, $custom_modules);
 }
 
@@ -203,7 +203,14 @@ function d6primer_profile_tasks(&$task, $url) {
   
   // Run 'task_configure_cleanup' task
   if ($task == 'task_configure_cleanup') {
-    drupal_flush_all_caches();
+    
+  	// enable featured content slider module now after all other dependencies are there (to ensure creation of taxonomy term)
+  	$enable_modules = array(
+  		'primer_home_page_slider',
+  	);
+  	module_enable($enable_modules);
+  	
+  	drupal_flush_all_caches();
     drupal_cron_run();
     $task = 'profile-finished';
   }
