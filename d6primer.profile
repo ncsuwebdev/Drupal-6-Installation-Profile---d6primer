@@ -128,6 +128,9 @@ function d6primer_profile_task_list() {
   	'task_enable_feature_primer_home_page_slider' => st('Enable Home Page Slider Feature'),
   	'task_configure_feature_primer_home_page_slider' => st('Configure Home Page Slider Feature'),
     'task_create_first_node' => st('Create First Node / Set as Home Page'),
+  	'task_create_standard_menus' => st('Create Standard Menus'),
+  	'task_create_standard_menu_links' => st('Create Standard Menu Links'),
+  	'task_configure_blocks' => st('Configure Blocks'),
   	'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
@@ -148,87 +151,110 @@ function d6primer_profile_task_list() {
  */
 
 function d6primer_profile_tasks(&$task, $url) {
-  // Run 'profile' task
-  if ($task == 'profile') {
-    // Uninstalling the updates notification by default
-    module_disable(array('update'));
-    $task = 'task_configure_theme';
-    watchdog('d6primer_profile', 'running profile task');
-  }
+	
+	// Run 'profile' task
+	if ($task == 'profile') {
+	  // Uninstalling the updates notification by default
+	  module_disable(array('update'));
+	  $task = 'task_configure_theme';
+	  watchdog('d6primer_profile', 'running profile task');
+	}
+	
+	// Run 'task_configure_theme' task
+	if ($task == 'task_configure_theme') {
+	  configure_theme();
+	  $task = 'task_configure_editor';
+	}
+	  
+	// Run 'task_configure_editor' task
+	if ($task == 'task_configure_editor') {
+	  configure_editor();
+	  $task = 'task_configure_variables';
+	}
+	  
+	// Run 'task_configure_editor' task
+	if ($task == 'task_configure_variables') {
+	  configure_variables();
+	  $task = 'task_configure_users';
+	}
+	  
+	// Run 'task_configure_users' task
+	if ($task == 'task_configure_users') {
+	  configure_users();
+	  $task = 'task_configure_nodewords';
+	}
+	  
+	// Run 'task_configure_nodewords' task
+	if ($task == 'task_configure_nodewords') {
+	  configure_nodewords();
+	  $task = 'task_configure_contact';
+	}
+	  
+	// Run 'task_configure_contact' task
+	if ($task == 'task_configure_contact') {
+	  configure_contact();
+	  $task = 'task_configure_captcha';
+	}
+	
+	// Run 'task_configure_contact' task
+	if ($task == 'task_configure_captcha') {
+	  configure_captcha();
+	  $task = 'task_configure_backup_migrate';
+	}
+	
+	// Run 'task_configure_backup_migrate' task
+	if ($task == 'task_configure_backup_migrate') {
+	  configure_backup_migrate();
+	  $task = 'task_enable_feature_primer_home_page_slider';
+	}
+	  
+	// Run 'task_enable_feature_primer_home_page_slider' task
+	if ($task == 'task_enable_feature_primer_home_page_slider') {
+	  enable_feature_primer_home_page_slider();
+	  $task = 'task_configure_feature_primer_home_page_slider';
+	}
+	  
+	// Run 'task_configure_feature_primer_home_page_slider' task
+	if ($task == 'task_configure_feature_primer_home_page_slider') {
+	  configure_feature_primer_home_page_slider();
+	  $task = 'task_create_first_node';
+	}
+  
+  	// Run 'task_create_first_node' task
+	if ($task == 'task_create_first_node') {
+    	create_first_node();
+		$task = 'task_create_standard_menu';
+	}
+	
+	// Run 'task_create_standard_menus' task
+	if ($task == 'task_create_standard_menus') {
+    	create_standard_menus();
+		$task = 'task_create_standard_menu_links';
+	}
+	
+	// Run 'task_create_standard_menu_links' task
+	if ($task == 'task_create_standard_menu_links') {
+    	create_standard_menu_links();
+		$task = 'task_configure_blocks';
+	}
+	
+	// Run 'task_configure_blocks' task
+	if ($task == 'task_configure_blocks') {
+    	configure_blocks();
+		$task = 'task_configure_cleanup';
+	}
+  
+  	// Run 'task_configure_cleanup' task
+  	if ($task == 'task_configure_cleanup') {
+  		drupal_flush_all_caches();
+    	drupal_cron_run();
+    	$task = 'profile-finished';
+  	}
+  
+}
 
-  // Run 'task_configure_theme' task
-  if ($task == 'task_configure_theme') {
-  	configure_theme();
-  	$task = 'task_configure_editor';
-  }
-  
-  // Run 'task_configure_editor' task
-  if ($task == 'task_configure_editor') {
-    configure_editor();
-    $task = 'task_configure_variables';
-  }
-  
-  // Run 'task_configure_editor' task
-  if ($task == 'task_configure_variables') {
-    configure_variables();
-    $task = 'task_configure_users';
-  }
-  
-  // Run 'task_configure_users' task
-  if ($task == 'task_configure_users') {
-    configure_users();
-    $task = 'task_configure_nodewords';
-  }
-  
-  // Run 'task_configure_nodewords' task
-  if ($task == 'task_configure_nodewords') {
-    configure_nodewords();
-    $task = 'task_configure_contact';
-  }
-  
-  // Run 'task_configure_contact' task
-  if ($task == 'task_configure_contact') {
-    configure_contact();
-    $task = 'task_configure_captcha';
-  }
-
-  // Run 'task_configure_contact' task
-  if ($task == 'task_configure_captcha') {
-    configure_captcha();
-    $task = 'task_configure_backup_migrate';
-  }
-
-  // Run 'task_configure_backup_migrate' task
-  if ($task == 'task_configure_backup_migrate') {
-    configure_backup_migrate();
-    $task = 'task_enable_feature_primer_home_page_slider';
-  }
-  
-  // Run 'task_enable_feature_primer_home_page_slider' task
-  if ($task == 'task_enable_feature_primer_home_page_slider') {
-    enable_feature_primer_home_page_slider();
-    $task = 'task_configure_feature_primer_home_page_slider';
-  }
-  
-  // Run 'task_configure_feature_primer_home_page_slider' task
-  if ($task == 'task_configure_feature_primer_home_page_slider') {
-    configure_feature_primer_home_page_slider();
-    $task = 'task_create_first_node';
-  }
-  
-  // Run 'task_create_first_node' task
-  if ($task == 'task_create_first_node') {
-    create_first_node();
-    $task = 'task_configure_cleanup';
-  }
-  
-  // Run 'task_configure_cleanup' task
-  if ($task == 'task_configure_cleanup') {
-  	drupal_flush_all_caches();
-    drupal_cron_run();
-    $task = 'profile-finished';
-  }
-  
+function get_theme_name() {
+	return 'primer';
 }
 
 /**
@@ -237,7 +263,7 @@ function d6primer_profile_tasks(&$task, $url) {
 function configure_theme() {
 
   $system_themes = system_theme_data();
-  $theme = 'primer';
+  $theme = get_theme_name();
 
   if (array_key_exists($theme, $system_themes)) {
     system_initialize_theme_blocks($theme);
@@ -247,38 +273,7 @@ function configure_theme() {
   // Disables garland theme
   db_query("UPDATE {system} SET status = 0 WHERE type = 'theme' and name = ('garland')");
   watchdog('d6primer_profile', 'Configured theme');
-
   
-  // Disable all default blocks
-  db_query("UPDATE {blocks} SET status = 0 where theme = '%s'", $theme);
-
-  $blocks = array(
-    'search' => array(
-      'module' => 'search',
-      'delta' => '0',
-      'theme' => $theme,
-      'status' => 1,
-      'region' => 'header_search',
-      'title' => 'Search',
-      'weight' => '-10',
-    ),
-    'wraplogin_block' => array(
-      'module' => 'wraplogin',
-      'delta' => '0',
-      'theme' => $theme,
-      'status' => 1,
-      'region' => 'left_below_menu',
-      'title' => 'UNITY/WRAP LOGIN',
-      'weight' => '-6',
-    ),
-  );
-
-  foreach ($blocks as $block) {
-    // Inserts the block into the block menu
-    drupal_write_record('blocks', $block);
-    
-  }
-  watchdog('d6primer_profile', 'Configured blocks');
 }
 
 /**
@@ -703,4 +698,155 @@ function create_first_node() {
   
   watchdog('d6primer_profile', 'Added first node and set as home page');
 
+}
+
+function create_standard_menus() {
+	
+	// Building menus
+  $menus = array(
+    'footer' => array(
+      'menu_name' => 'menu-footer-links',
+      'title' => 'Footer Links',
+      'description' => 'These links will appear in the footer region.'
+    ),
+    'Horiz-Main-Menu' => array(
+      'menu_name' => 'menu-horiz-main-menu',
+      'title' => 'Horizontal Main Menu',
+      'description' => 'These links will appear in the horizontal main menu region.'
+    ),
+  );
+
+  foreach ($menus as $menu) {
+    drupal_write_record('menu_custom', $menu);
+  };
+	
+}
+
+function create_standard_menu_links() {
+	
+	$links = array(
+	    'home' => array(
+	      'menu_name' => 'menu-footer-links',
+	      'link_path' => '<front>',
+	      'link_title' => 'Home',
+	      'weight' => -50,
+	    ),
+	    'emergency' => array(
+	      'menu_name' => 'menu-footer-links',
+	      'link_path' => 'http://www.ncsu.edu/emergency-information',
+	      'link_title' => 'NC State Emergency Info',
+	      'weight' => -49,
+	    ),
+	    'privacy' => array(
+	      'menu_name' => 'menu-footer-links',
+	      'link_path' => 'http://www.ncsu.edu/privacy',
+	      'link_title' => 'Privacy Statement',
+	      'weight' => -48,
+	    ),
+	    'copyright' => array(
+	      'menu_name' => 'menu-footer-links',
+	      'link_path' => 'http://www.ncsu.edu/copyright',
+	      'link_title' => 'Copyright',
+	      'weight' => -47,
+	    ),
+	    'accessibility' => array(
+	      'menu_name' => 'menu-footer-links',
+	      'link_path' => 'http://ncsu.edu/it/access/legal/webreg.php',
+	      'link_title' => 'Accessibility',
+	      'weight' => -46,
+	    ),
+	    'diversity' => array(
+	      'menu_name' => 'menu-footer-links',
+	      'link_path' => 'http://www.ncsu.edu/oied/',
+	      'link_title' => 'Diversity',
+	      'weight' => -45,
+	    ),
+	    'university_policies' => array(
+	      'menu_name' => 'menu-footer-links',
+	      'link_path' => 'http://policies.ncsu.edu/',
+	      'link_title' => 'University Policies',
+	      'weight' => -44,
+	    ),
+	    'contact' => array(
+	      'menu_name' => 'menu-footer-links',
+	      'link_path' => 'contact',
+	      'link_title' => 'Contact Us',
+	      'weight' => -43,
+	    ),
+	    'text-only' => array(
+	      'menu_name' => 'menu-footer-links',
+	      'link_path' => 'http://transcoder.usablenet.com/tt/referrer',
+	      'link_title' => 'Text Only',
+	      'weight' => -41,
+	    ),
+	    'front' => array(
+	      'menu_name' => 'menu-horiz-main-menu',
+	      'link_path' => '<front>',
+	      'link_title' => 'Home',
+	      'weight' => -50,
+	    ),
+	    'feedback' => array(
+	      'menu_name' => 'menu-horiz-main-menu',
+	      'link_path' => 'contact',
+	      'link_title' => 'Contact Us',
+	      'weight' => -49,
+	    ),
+	);
+
+	foreach ($links as $link) {
+		menu_link_save($link);
+	}
+	
+}
+
+function configure_blocks() {
+	
+	db_query("UPDATE {blocks} SET status = 0 where theme = '%s'", get_theme_name());
+	
+	$blocks = array(
+	    'footer-links' => array(
+	      'module' => 'menu',
+	      'delta' => 'menu-footer-links',
+	      'theme' => get_theme_name(),
+	      'status' => 1,
+	      'region' => 'footer',
+	      'title' => '<none>',
+	      'weight' => '-9',
+	    ),
+	    'networking-links' => array(
+	      'module' => 'menu',
+	      'delta' => 'menu-horiz-main-menu',
+	      'theme' => get_theme_name(),
+	      'status' => 1,
+	      'region' => 'footer',
+	      'title' => '<none>',
+	      'weight' => '-8',
+	    ),
+	    'search' => array(
+	      'module' => 'search',
+	      'delta' => '0',
+	      'theme' => $theme,
+	      'status' => 1,
+	      'region' => 'header_search',
+	      'title' => 'Search',
+	      'weight' => '-10',
+	    ),
+	    'wraplogin_block' => array(
+	      'module' => 'wraplogin',
+	      'delta' => '0',
+	      'theme' => $theme,
+	      'status' => 1,
+	      'region' => 'left_below_menu',
+	      'title' => 'UNITY/WRAP LOGIN',
+	      'weight' => '-6',
+	    ),
+    );
+
+  foreach ($blocks as $block) {
+    // Inserts the block into the block menu
+    drupal_write_record('blocks', $block);
+
+  }
+  watchdog('d6primer_profile', 'Configured blocks');
+  
 }
