@@ -10,19 +10,19 @@ function enable_feature_primer_home_page_slider() {
   	
   	module_enable($enable_modules);
   	
-  	$sqlcond = "name = 'Syndication'";
-	$query = db_query("SELECT * FROM {vocabulary} WHERE $sqlcond");
-	
-	
-	while ($row = db_fetch_array($query)) {
-		$vid = $row['vid'];
+	$name = 'Syndication';
+	$limit = 1;
+	$query = db_query("SELECT * FROM {vocabulary} WHERE name = '%s' LIMIT %d", $type, $limit);    
+	while ($row = db_fetch_array($query)) { // this returns the row as an array, use db_fetch_object to get an object
+	  $vid = $row['vid'];
 	}
   	
   	$term = array(
 		'vid' => $vid, // Vocabulary ID
 		'name' => 'Home Page Slider', // Term Name
 	);
-	return taxonomy_save_term($term);
+	
+	taxonomy_save_term($term);
           
 };
   	
