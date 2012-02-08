@@ -223,7 +223,7 @@ function d6primer_profile_tasks(&$task, $url) {
   	// Run 'task_create_first_node' task
 	if ($task == 'task_create_first_node') {
     	create_first_node();
-		$task = 'task_create_standard_menu';
+		$task = 'task_create_standard_menus';
 	}
 	
 	// Run 'task_create_standard_menus' task
