@@ -11,6 +11,7 @@ include_once('d6primer.permissions.inc');
 include_once('d6primer.users.inc');
 include_once('d6primer.nodewords.inc');
 include_once('d6primer.backup_migrate.inc');
+include_once('d6primer.feature_primer_home_page_slider.inc');
 
 /**
  * Returns a description of the profile for the initial installation screen
@@ -125,6 +126,7 @@ function d6primer_profile_task_list() {
 	'task_configure_contact' => st('Configure Contact Form'),
     'task_configure_captcha' => st('Configure Captcha/Recaptcha'),
     'task_configure_backup_migrate' => st('Configure Backup/Migrate'),
+  	'task_enable_feature_primer_home_page_slider' => st('Configure Home Page Slider Feature'),
   	'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
@@ -198,18 +200,18 @@ function d6primer_profile_tasks(&$task, $url) {
   // Run 'task_configure_backup_migrate' task
   if ($task == 'task_configure_backup_migrate') {
     configure_backup_migrate();
+    $task = 'task_enable_feature_primer_home_page_slider';
+  }
+  
+  // Run 'task_configure_backup_migrate' task
+  if ($task == 'task_enable_feature_primer_home_page_slider') {
+    enable_feature_primer_home_page_slider();
     $task = 'task_configure_cleanup';
   }
   
   // Run 'task_configure_cleanup' task
   if ($task == 'task_configure_cleanup') {
     
-  	// enable featured content slider module now after all other dependencies are there (to ensure creation of taxonomy term)
-  	$enable_modules = array(
-  		'primer_home_page_slider',
-  	);
-  	module_enable($enable_modules);
-  	
   	drupal_flush_all_caches();
     drupal_cron_run();
     $task = 'profile-finished';
@@ -437,7 +439,7 @@ function configure_users() {
   );
   foreach ($permissions as $role => $perms) {
     // Add the role and get the role id.
-    if ($role != 'anonymous user') {
+    if ($role != 'anonymous user' && $role != 'authenticated user') {
       db_query("INSERT INTO {role} (name) VALUES ('%s')", $role);
     }
     $rid = db_result(db_query("SELECT rid FROM {role} WHERE name = '%s'", $role));
