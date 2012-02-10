@@ -70,6 +70,7 @@ projects[extlink][subdir] = contrib
 projects[backup_migrate][subdir] = contrib
 projects[strongarm][subdir] = contrib
 projects[features][subdir] = contrib
+projects[gcal_events][subdir] = contrib
 
 ; ************************
 ; LIBRARIES
@@ -90,10 +91,7 @@ libraries[simplepie][download][url] = "http://drupal.ncsu.edu/resources/librarie
 ; ************************
 
 projects[primer][subdir] = "ncstate"
-;projects[primer][location] = "http://drupal.ncsu.edu/features/fserver"
-projects[primer][download][type] = "git"
-projects[primer][download][url] = "/Users/njyoung/Desktop/DropBox/Dropbox/git-repos/drupal6-primer.git"
-projects[primer][download][branch] = "master"
+projects[primer][location] = "http://drupal.ncsu.edu/features/fserver"
 
 projects[wraplogin][subdir] = "ncstate"
 projects[wraplogin][location] = "http://drupal.ncsu.edu/features/fserver"
