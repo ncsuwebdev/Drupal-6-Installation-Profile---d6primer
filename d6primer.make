@@ -82,6 +82,9 @@ libraries[tinymce][directory_name] = "tinymce"
 libraries[jquery.ui][download][type] = "file"
 libraries[jquery.ui][download][url] = "http://drupal.ncsu.edu/resources/libraries/jquery.ui/jquery-ui-1.7.3.zip"
 
+libraries[simplepie][download][type] = "file"
+libraries[simplepie][download][url] = "http://drupal.ncsu.edu/resources/libraries/simplepie/simplepie-1.2.1.zip"
+
 ; ************************
 ; NC STATE MODULES & THEMES
 ; ************************

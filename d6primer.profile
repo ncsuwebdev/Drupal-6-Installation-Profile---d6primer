@@ -62,6 +62,7 @@ function d6primer_profile_modules() {
     'ctools',
     'extlink',
     'features',
+  	'gcal_events',
     'image_attach',
     'image',
     'imageapi_gd',
@@ -131,6 +132,7 @@ function d6primer_profile_task_list() {
   	'task_create_standard_menus' => st('Create Standard Menus'),
   	'task_create_standard_menu_links' => st('Create Standard Menu Links'),
   	'task_configure_blocks' => st('Configure Blocks'),
+  	'task_configure_gcal_events' => st('Configure GCal Events Module'),
   	'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
@@ -241,6 +243,12 @@ function d6primer_profile_tasks(&$task, $url) {
 	// Run 'task_configure_blocks' task
 	if ($task == 'task_configure_blocks') {
     	configure_blocks();
+		$task = 'task_configure_gcal_events';
+	}
+	
+	// Run 'task_configure_gcal_events' task
+	if ($task == 'task_configure_gcal_events') {
+    	configure_gcal_events();
 		$task = 'task_configure_cleanup';
 	}
   
@@ -435,6 +443,10 @@ function configure_variables() {
   variable_set('extlink_subdomains', 1);
   watchdog('d6primer_profile', 'Configured extlinks settings');
 
+  // configure nc state brand bar settings
+  variable_set('ncstatebrandingbar_select_version', 'red_on_white__centered');
+  watchdog('d6primer_profile', 'Configured nc state brand bar');
+  
 }
 
 /**
@@ -773,12 +785,6 @@ function create_standard_menu_links() {
 	      'link_title' => 'Contact Us',
 	      'weight' => -43,
 	    ),
-	    'text-only' => array(
-	      'menu_name' => 'menu-footer-links',
-	      'link_path' => 'http://transcoder.usablenet.com/tt/referrer',
-	      'link_title' => 'Text Only',
-	      'weight' => -41,
-	    ),
 	    'front' => array(
 	      'menu_name' => 'menu-horiz-main-menu',
 	      'link_path' => '<front>',
@@ -849,4 +855,56 @@ function configure_blocks() {
   }
   watchdog('d6primer_profile', 'Configured blocks');
   
+}
+
+function configure_gcal_events() {
+	
+	// get gcal_events directory
+	$modulePath = drupal_get_path('module', 'gcal_events');	
+	
+	$simplePieLibraryPath = libraries_get_path('simplepie');
+	
+	// create cache directory in gcal_events directory, make writable by server
+	mkdir($modulePath . '/cache', 0755, false);	
+	
+	// copy simplepie.inc from libraries directory to gcal_events directory
+	copy($simplePieLibraryPath . '/simplepie.inc', $modulePath . '/simplepie.inc');
+	
+	watchdog('d6primer_profile', 'Configured GCal Events Module');
+	
+	//configure first calendar block for gcal events to use NC State Academic Calendar
+	$blocks = array(
+	    'academic-calendar' => array(
+	      	'module' 						=> 'gcal_events',
+		    'delta' 						=> '0',
+		    'title' 						=> 'Academic Calendar',
+		    'gcal_events_block' 			=> '0',
+		    'gcal_events_admin_name' 		=> 'Academic Calendar',
+		    'gcal_events_calendar_id' 		=> 'ncsu.edu_507c8794r25bnebhjrrh3i5c4s@group.calendar.google.com',
+		    'gcal_events_private_id' 		=> NULL,
+		    'gcal_events_num_events' 		=> '5',
+		    'gcal_events_today_only' 		=> '0',
+		    'gcal_events_dateformat' 		=> NULL
+		    'gcal_events_timeformat' 		=> NULL
+		    'gcal_events_template_event' 	=> '<div class="gcal_block_event"><span class="element date">#DATE#</span><span class="element time">#TIME#</span><span class="element title">#TITLE#</span><span class="element location">#LOC#</span></div>',			
+		    'gcal_events_template_title' 	=> '<a target="_blank" title="#TITLE#" href="#URL#">#TITLE#</a>',
+			'gcal_events_template_desc' 	=> '#DESC#',
+		    'gcal_events_template_date' 	=> '#DATE#',
+			'gcal_events_template_time' 	=> '#TIME#',
+		    'gcal_events_template_loc' 		=> '#LOC#',
+		    'gcal_events_empty' 			=> 'No events to display',
+		    'gcal_events_footer' 			=> '<a href="http://go.ncsu.edu/drupal-acad-calendar-more-link" target="_blank" title="Subscribe & view all events">Subscribe & view all events</a>',
+		    
+	    ),
+	    
+    );
+
+  foreach ($blocks as $block) {
+    // Inserts the block into the block menu
+    drupal_write_record('blocks', $block);
+
+  }
+	
+  watchdog('d6primer_profile', 'Configured GCal Events Academic Calendar Block');
+	
 }
