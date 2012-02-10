@@ -70,6 +70,7 @@ projects[extlink][subdir] = contrib
 projects[backup_migrate][subdir] = contrib
 projects[strongarm][subdir] = contrib
 projects[features][subdir] = contrib
+projects[gcal_events][subdir] = contrib
 
 ; ************************
 ; LIBRARIES
