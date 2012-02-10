@@ -90,7 +90,10 @@ libraries[simplepie][download][url] = "http://drupal.ncsu.edu/resources/librarie
 ; ************************
 
 projects[primer][subdir] = "ncstate"
-projects[primer][location] = "http://drupal.ncsu.edu/features/fserver"
+;projects[primer][location] = "http://drupal.ncsu.edu/features/fserver"
+projects[primer][download][type] = "git"
+projects[primer][download][url] = "/Users/njyoung/Desktop/DropBox/Dropbox/git-repos/drupal6-primer.git"
+projects[primer][download][branch] = "master"
 
 projects[wraplogin][subdir] = "ncstate"
 projects[wraplogin][location] = "http://drupal.ncsu.edu/features/fserver"
