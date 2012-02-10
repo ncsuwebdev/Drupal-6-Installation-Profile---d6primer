@@ -884,8 +884,8 @@ function configure_gcal_events() {
 		    'gcal_events_private_id' 		=> NULL,
 		    'gcal_events_num_events' 		=> '5',
 		    'gcal_events_today_only' 		=> '0',
-		    'gcal_events_dateformat' 		=> NULL
-		    'gcal_events_timeformat' 		=> NULL
+		    'gcal_events_dateformat' 		=> NULL,
+		    'gcal_events_timeformat' 		=> NULL,
 		    'gcal_events_template_event' 	=> '<div class="gcal_block_event"><span class="element date">#DATE#</span><span class="element time">#TIME#</span><span class="element title">#TITLE#</span><span class="element location">#LOC#</span></div>',			
 		    'gcal_events_template_title' 	=> '<a target="_blank" title="#TITLE#" href="#URL#">#TITLE#</a>',
 			'gcal_events_template_desc' 	=> '#DESC#',
@@ -894,9 +894,7 @@ function configure_gcal_events() {
 		    'gcal_events_template_loc' 		=> '#LOC#',
 		    'gcal_events_empty' 			=> 'No events to display',
 		    'gcal_events_footer' 			=> '<a href="http://go.ncsu.edu/drupal-acad-calendar-more-link" target="_blank" title="Subscribe & view all events">Subscribe & view all events</a>',
-		    
 	    ),
-	    
     );
 
   foreach ($blocks as $block) {
