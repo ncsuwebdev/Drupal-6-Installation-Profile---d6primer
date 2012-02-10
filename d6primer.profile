@@ -872,20 +872,22 @@ function configure_gcal_events() {
 	
 	watchdog('d6primer_profile', 'Configured GCal Events Module');
 	
+	variable_set('gcal_events_num_blocks', 2);
+	
 	//configure first calendar block for gcal events to use NC State Academic Calendar
 	$blocks = array(
 	    'academic-calendar' => array(
 	      	'module' 						=> 'gcal_events',
-		    'delta' 						=> '0',
-		    'title' 						=> 'Academic Calendar',
+		    'delta' 						=> '1',
+		    'title' 						=> 'NC State Academic Calendar',
 		    'gcal_events_block' 			=> '0',
 		    'gcal_events_admin_name' 		=> 'Academic Calendar',
 		    'gcal_events_calendar_id' 		=> 'ncsu.edu_507c8794r25bnebhjrrh3i5c4s@group.calendar.google.com',
-		    'gcal_events_private_id' 		=> NULL,
+		    'gcal_events_private_id' 		=> '',
 		    'gcal_events_num_events' 		=> '5',
 		    'gcal_events_today_only' 		=> '0',
-		    'gcal_events_dateformat' 		=> NULL,
-		    'gcal_events_timeformat' 		=> NULL,
+		    'gcal_events_dateformat' 		=> '',
+		    'gcal_events_timeformat' 		=> '',
 		    'gcal_events_template_event' 	=> '<div class="gcal_block_event"><span class="element date">#DATE#</span><span class="element time">#TIME#</span><span class="element title">#TITLE#</span><span class="element location">#LOC#</span></div>',			
 		    'gcal_events_template_title' 	=> '<a target="_blank" title="#TITLE#" href="#URL#">#TITLE#</a>',
 			'gcal_events_template_desc' 	=> '#DESC#',
@@ -894,6 +896,10 @@ function configure_gcal_events() {
 		    'gcal_events_template_loc' 		=> '#LOC#',
 		    'gcal_events_empty' 			=> 'No events to display',
 		    'gcal_events_footer' 			=> '<a href="http://go.ncsu.edu/drupal-acad-calendar-more-link" target="_blank" title="Subscribe & view all events">Subscribe & view all events</a>',
+			'region' 						=> 'right_above_sidebar',
+			'weight' 						=> '-6',
+			'status' 						=> 1,
+			'theme' 						=> get_theme_name(),
 	    ),
     );
 
