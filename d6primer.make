@@ -11,6 +11,7 @@ api = "2"
 ; CONTRIB MODULES
 ; ************************
 
+projects[gcal_events]
 projects[admin_menu][subdir] = contrib
 projects[adminrole][subdir] = contrib
 projects[advanced_help][subdir] = contrib
@@ -70,7 +71,6 @@ projects[extlink][subdir] = contrib
 projects[backup_migrate][subdir] = contrib
 projects[strongarm][subdir] = contrib
 projects[features][subdir] = contrib
-projects[gcal_events][subdir] = contrib
 
 ; ************************
 ; LIBRARIES
