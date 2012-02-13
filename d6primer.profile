@@ -82,6 +82,7 @@ function d6primer_profile_modules() {
     'nodewords',
     'path_redirect',
     'pathauto',
+    'readonlymode',
     'recaptcha',
   	'role_delegation',
   	'shadowbox',
