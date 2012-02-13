@@ -877,7 +877,7 @@ function configure_gcal_events() {
 	$delta = 0;
 	$private_id = '927973de0296fbd3520681e5bd96f921';
 	
-	variable_set('gcal_events_private_id_'. $delta, $private_id);
+	//variable_set('gcal_events_private_id_'. $delta, $private_id);
 	variable_set('gcal_events_block_'. $delta, $delta);
 	variable_set('gcal_events_admin_name_'. $delta, 'NC State Academic Calendar');
 	variable_set('gcal_events_calendar_id_'. $delta, 'ncsu.edu_507c8794r25bnebhjrrh3i5c4s@group.calendar.google.com');
