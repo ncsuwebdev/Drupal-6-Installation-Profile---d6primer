@@ -872,22 +872,28 @@ function configure_gcal_events() {
 	
 	watchdog('d6primer_profile', 'Configured GCal Events Module');
 	
-	variable_set('gcal_events_num_blocks', 2);
+	variable_set('gcal_events_num_blocks', 1);
 	
+	$delta = 0;
+	$private_id = '927973de0296fbd3520681e5bd96f921';
+	
+	variable_set('gcal_events_private_id_'. $delta, $private_id);
 	//configure first calendar block for gcal events to use NC State Academic Calendar
 	$blocks = array(
 	    'academic-calendar' => array(
 	      	'module' 						=> 'gcal_events',
-		    'delta' 						=> '1',
+		    'delta' 						=> $delta,
 		    'title' 						=> 'NC State Academic Calendar',
-		    'gcal_events_block' 			=> '0',
+		    'gcal_events_block' 			=> $delta,
 		    'gcal_events_admin_name' 		=> 'Academic Calendar',
 		    'gcal_events_calendar_id' 		=> 'ncsu.edu_507c8794r25bnebhjrrh3i5c4s@group.calendar.google.com',
-		    'gcal_events_private_id' 		=> '',
+		    'gcal_events_cache'				=> $modulePath . '/cache',
+			'gcal_events_cache_duration'	=> '3600'
+		    'gcal_events_private_id' 		=> $private_id ,
 		    'gcal_events_num_events' 		=> '5',
 		    'gcal_events_today_only' 		=> '0',
-		    'gcal_events_dateformat' 		=> '',
-		    'gcal_events_timeformat' 		=> '',
+		    'gcal_events_dateformat' 		=> 'j F, Y',
+		    'gcal_events_timeformat' 		=> 'g:ia',
 		    'gcal_events_template_event' 	=> '<div class="gcal_block_event"><span class="element date">#DATE#</span><span class="element time">#TIME#</span><span class="element title">#TITLE#</span><span class="element location">#LOC#</span></div>',			
 		    'gcal_events_template_title' 	=> '<a target="_blank" title="#TITLE#" href="#URL#">#TITLE#</a>',
 			'gcal_events_template_desc' 	=> '#DESC#',
