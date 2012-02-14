@@ -20,6 +20,7 @@ function get_moderator_permissions() {
   	'Configure all role settings',
     'Configure all page settings',
     'Configure all specific settings',
+  	'Configure all user settings',
     'Create blocks',
     'Disable all blocks',
     'Enable all blocks',
@@ -41,6 +42,8 @@ function get_moderator_permissions() {
     'administer taxonomy',
   	'administer views',
   	'access all webform results',
+  	'administer users'.
+  	'administer site configuration',
   );
 }
 
