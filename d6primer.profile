@@ -53,7 +53,8 @@ function d6primer_profile_modules() {
   $contrib_modules = array(
     'admin_menu',
   	'adminrole',
-    'auto_nodetitle',
+    'advanced_help',
+  	'auto_nodetitle',
     'backup_migrate',
     'block_access',
     'captcha',
