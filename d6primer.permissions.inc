@@ -57,6 +57,7 @@ function get_anonymous_permissions() {
     'view uploaded files',
   	'access all views', 
   	'access site-wide contact form',
+  	'view field_photo_gallery_images',
   );
 }
 
@@ -69,7 +70,8 @@ function get_authenticated_permissions() {
     'search content',
     'view uploaded files',
   	'access all views',
-  	'access site-wide contact form', 
+  	'access site-wide contact form',
+  	'view field_photo_gallery_images',
   );
 }
 

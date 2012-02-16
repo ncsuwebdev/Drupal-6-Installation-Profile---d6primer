@@ -5,7 +5,7 @@
 core = "6.x"
 api = "2"
 
-;projects[drupal][version] = 6.24
+projects[drupal][version] = 6.24
 
 ; ************************
 ; CONTRIB MODULES
@@ -72,6 +72,8 @@ projects[strongarm][subdir] = contrib
 projects[features][subdir] = contrib
 projects[gcal_events][subdir] = contrib
 projects[readonlymode][subdir] = contrib
+projects[context][subdir] = contrib
+
 
 ; ************************
 ; LIBRARIES
@@ -112,3 +114,6 @@ projects[ncsuroles][location] = "http://drupal.ncsu.edu/features/fserver"
 
 projects[primer_home_page_slider][subdir] = "ncstate/features"
 projects[primer_home_page_slider][location] = http://drupal.ncsu.edu/features/fserver
+
+projects[primer_photo_gallery][subdir] = "ncstate/features"
+projects[primer_photo_gallery][location] = http://drupal.ncsu.edu/features/fserver
