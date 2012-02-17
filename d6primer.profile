@@ -59,16 +59,13 @@ function d6primer_profile_modules() {
     'block_access',
     'captcha',
     'content',
-  	'context',
     'css_injector',
     'ctools',
     'extlink',
     'features',
-  	'filefield',
   	'gcal_events',
     'image_attach',
     'image',
-	'imagefield',
   	'imageapi_gd',
     'imageapi',
     'imagecache_ui',
@@ -133,6 +130,8 @@ function d6primer_profile_task_list() {
     'task_configure_backup_migrate' => st('Configure Backup/Migrate'),
   	'task_enable_feature_primer_home_page_slider' => st('Enable Home Page Slider Feature'),
   	'task_configure_feature_primer_home_page_slider' => st('Configure Home Page Slider Feature'),
+  	'task_enable_feature_primer_photo_gallery' => st('Enable Photo Gallery Feature'),
+  	'task_configure_feature_primer_photo_gallery' => st('Configure Photo Gallery Feature'),
     'task_create_first_node' => st('Create First Node / Set as Home Page'),
   	'task_create_standard_menus' => st('Create Standard Menus'),
   	'task_create_standard_menu_links' => st('Create Standard Menu Links'),
@@ -224,6 +223,18 @@ function d6primer_profile_tasks(&$task, $url) {
 	// Run 'task_configure_feature_primer_home_page_slider' task
 	if ($task == 'task_configure_feature_primer_home_page_slider') {
 	  configure_feature_primer_home_page_slider();
+	  $task = 'task_enable_feature_primer_photo_gallery';
+	}
+	
+	// Run 'task_enable_feature_primer_photo_gallery' task
+	if ($task == 'task_enable_feature_primer_photo_gallery') {
+	  enable_feature_primer_photo_gallery();
+	  $task = 'task_configure_feature_primer_photo_gallery';
+	}
+	
+	// Run 'task_configure_feature_primer_photo_gallery' task
+	if ($task == 'task_configure_feature_primer_photo_gallery') {
+	  configure_feature_primer_photo_gallery();
 	  $task = 'task_create_first_node';
 	}
   
@@ -667,7 +678,7 @@ function configure_feature_primer_home_page_slider() {
 	 *  as it should be the only vocabulary
 	 *  
 	 *  This will break things though if another module/feature is added that
-	 *  also create vocabularies
+	 *  also create vocabularies before this is run
 	 * 
 	 */
 	
@@ -688,6 +699,38 @@ function configure_feature_primer_home_page_slider() {
 	taxonomy_save_term($term);
           
 	watchdog('d6primer_profile', 'Configured home page slider feature');
+	
+};
+
+/**
+ * Enables photo gallery feature
+ */
+function enable_feature_primer_photo_gallery() {
+    
+	// enable these other modules in this function, because ctools needs to exist before these will work.
+	// otherwise you will get an error like:
+	// "Fatal error: Call to undefined function ctools_include() in ... context/context.module on line 459"
+	
+	$enable_modules = array(
+  		'context',
+    	'imagefield',
+    	'filefield',	
+    	'primer_photo_gallery',
+  	);
+  	
+  	module_enable($enable_modules);
+
+  	watchdog('d6primer_profile', 'Enabled photo gallery feature');
+};
+
+/**
+ * Configures photo gallery feature
+ */
+function configure_feature_primer_photo_gallery() {
+              
+	// no steps yet...just a place holder for now
+	
+	watchdog('d6primer_profile', 'Configured photo gallery feature');
 	
 };
 
