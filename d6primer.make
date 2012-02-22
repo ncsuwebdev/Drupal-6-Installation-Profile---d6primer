@@ -73,6 +73,7 @@ projects[features][subdir] = contrib
 projects[gcal_events][subdir] = contrib
 projects[readonlymode][subdir] = contrib
 projects[context][subdir] = contrib
+projects[scheduler][subdir] = contrib
 
 
 ; ************************
