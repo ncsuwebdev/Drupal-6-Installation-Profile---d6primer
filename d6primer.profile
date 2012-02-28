@@ -305,6 +305,14 @@ function configure_theme() {
  * Configure Editor Task
  */
 function configure_editor() {
+  
+  $enable_modules = array(
+  	'tinymce_node_picker',
+  );
+  	
+  module_enable($enable_modules);	
+
+	
   $tiny_conf = get_tinymce_conf();
 
   $result = db_query("INSERT INTO {wysiwyg}
@@ -420,7 +428,7 @@ function configure_variables() {
   watchdog('d6primer_profile', 'Configured users');
 
   // Configure path auto patterns
-  variable_set('pathauto_node_pattern', '[menupath-raw]');
+  variable_set('pathauto_node_pattern', '[title-raw]');
   watchdog('d6primer_profile', 'Configured path auto settings');
 
   // Setting 404 page

@@ -33,6 +33,7 @@ function get_tinymce_conf() {
         'sub' => 1,
         'blockquote' => 1,
         'code' => 1,
+  		'nodepicker',
       ),
       'advlink' => array('advlink' => 1),
       'font' => array('formatselect' => 1, 'styleselect' => 1),
