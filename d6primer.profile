@@ -891,8 +891,8 @@ function configure_blocks() {
 	      'delta' => '0',
 	      'theme' => get_theme_name(),
 	      'status' => 1,
-	      'region' => 'left_below_menu',
-	      'title' => 'UNITY/WRAP LOGIN',
+	      'region' => 'header_small_right_menu',
+	      'title' => '<none>',
 	      'weight' => '-6',
 	    ),
     );
