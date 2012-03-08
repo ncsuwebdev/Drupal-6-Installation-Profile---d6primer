@@ -75,6 +75,7 @@ projects[readonlymode][subdir] = contrib
 projects[context][subdir] = contrib
 projects[scheduler][subdir] = contrib
 projects[tinymce_node_picker][subdir] = contrib
+projects[disable_messages][subdir] = contrib
 
 
 ; ************************
@@ -97,6 +98,10 @@ libraries[simplepie][download][url] = "http://drupal.ncsu.edu/resources/librarie
 
 projects[primer][subdir] = "ncstate"
 projects[primer][location] = "http://drupal.ncsu.edu/features/fserver"
+
+projects[primermanager][subdir] = "ncstate"
+projects[primermanager][location] = "http://drupal.ncsu.edu/features/fserver"
+
 
 projects[wraplogin][subdir] = "ncstate"
 projects[wraplogin][location] = "http://drupal.ncsu.edu/features/fserver"

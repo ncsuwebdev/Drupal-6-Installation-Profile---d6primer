@@ -44,6 +44,7 @@ function get_moderator_permissions() {
   	'access all webform results',
   	'administer users'.
   	'administer site configuration',
+  	'administer primer manager',
   );
 }
 
