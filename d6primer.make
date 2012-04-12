@@ -126,7 +126,7 @@ projects[nodeaccess][subdir] = contrib
 projects[nodeaccess][version] = 1.3
 
 projects[nodereference_url][subdir] = contrib
-projects[nodereference_url][version] = 2.9
+projects[nodereference_url][version] = 1.11
 
 projects[nodewords][subdir] = contrib
 projects[nodewords][version] = 2.x-dev
@@ -135,7 +135,7 @@ projects[path_redirect][subdir] = contrib
 projects[path_redirect][version] = 1.0-rc2
 
 projects[pathauto][subdir] = contrib
-projects[pathauto][version] = 6.25
+projects[pathauto][version] = 1.6
 
 projects[readonlymode][subdir] = contrib
 projects[readonlymode][version] = 1.0
@@ -252,5 +252,5 @@ projects[primer_home_page_slider][version] = 1.1
 projects[primer_home_page_slider][location] = http://drupal.ncsu.edu/features/fserver
 
 projects[primer_photo_gallery][subdir] = ncstate/features
-projects[primer_photo_gallery][version] = 1.0
+projects[primer_photo_gallery][version] = 1.1
 projects[primer_photo_gallery][location] = http://drupal.ncsu.edu/features/fserver
