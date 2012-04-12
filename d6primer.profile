@@ -721,7 +721,9 @@ function enable_feature_primer_photo_gallery() {
 	// otherwise you will get an error like:
 	// "Fatal error: Call to undefined function ctools_include() in ... context/context.module on line 459"
 	
-	$enable_modules = array(
+	/* commenting out for testing purposes
+
+  $enable_modules = array(
   		'context',
     	'imagefield',
     	'filefield',	
@@ -730,7 +732,11 @@ function enable_feature_primer_photo_gallery() {
   	
   	module_enable($enable_modules);
 
+    */
+
   	watchdog('d6primer_profile', 'Enabled photo gallery feature');
+
+
 };
 
 /**
