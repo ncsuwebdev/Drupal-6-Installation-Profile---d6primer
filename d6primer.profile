@@ -932,6 +932,12 @@ function configure_gcal_events() {
 	if(!is_dir($modulePath . '/cache')) {
     mkdir($modulePath . '/cache', 0755, false);	
   }
+
+  // check file permissions, if not 0755 then set
+  if(substr(sprintf('%o', fileperms($modulePath . '/cache')), -4) != 0755) {
+    chmod($modulePath . '/cache', 0755);
+  }
+
 	
 	// copy simplepie.inc from libraries directory to gcal_events directory
 	if(!file_exists($modulePath . '/simplepie.inc')) {
