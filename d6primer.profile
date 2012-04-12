@@ -923,10 +923,14 @@ function configure_gcal_events() {
 	$simplePieLibraryPath = libraries_get_path('simplepie');
 	
 	// create cache directory in gcal_events directory, make writable by server
-	mkdir($modulePath . '/cache', 0755, false);	
+	if(!is_dir($modulePath . '/cache')) {}
+    mkdir($modulePath . '/cache', 0755, false);	
+  }
 	
 	// copy simplepie.inc from libraries directory to gcal_events directory
-	copy($simplePieLibraryPath . '/simplepie.inc', $modulePath . '/simplepie.inc');
+	if(!file_exists($simplePieLibraryPath . '/simplepie.inc', $modulePath . '/simplepie.inc')) {
+    copy($simplePieLibraryPath . '/simplepie.inc', $modulePath . '/simplepie.inc');
+  }
 	
 	watchdog('d6primer_profile', 'Configured GCal Events Module');
 	
