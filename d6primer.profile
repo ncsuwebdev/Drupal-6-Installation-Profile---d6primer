@@ -923,7 +923,7 @@ function configure_gcal_events() {
 	$simplePieLibraryPath = libraries_get_path('simplepie');
 	
 	// create cache directory in gcal_events directory, make writable by server
-	if(!is_dir($modulePath . '/cache')) {}
+	if(!is_dir($modulePath . '/cache')) {
     mkdir($modulePath . '/cache', 0755, false);	
   }
 	
