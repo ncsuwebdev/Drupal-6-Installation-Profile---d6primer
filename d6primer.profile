@@ -928,7 +928,7 @@ function configure_gcal_events() {
   }
 	
 	// copy simplepie.inc from libraries directory to gcal_events directory
-	if(!file_exists($simplePieLibraryPath . '/simplepie.inc', $modulePath . '/simplepie.inc')) {
+	if(!file_exists($modulePath . '/simplepie.inc')) {
     copy($simplePieLibraryPath . '/simplepie.inc', $modulePath . '/simplepie.inc');
   }
 	
