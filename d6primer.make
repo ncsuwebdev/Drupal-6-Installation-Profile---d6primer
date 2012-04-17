@@ -104,6 +104,9 @@ projects[imce][version] = 2.3
 projects[jquery_ui][subdir] = contrib
 projects[jquery_ui][version] = 1.5
 
+projects[js_injector][subdir] = contrib
+projects[js_injector][version] = 1.1
+
 projects[libraries][subdir] = contrib
 projects[libraries][version] = 1.0
 
