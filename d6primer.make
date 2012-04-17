@@ -140,6 +140,9 @@ projects[path_redirect][version] = 1.0-rc2
 projects[pathauto][subdir] = contrib
 projects[pathauto][version] = 1.6
 
+projects[phone][subdir] = contrib
+projects[phone][version] = 2.18
+
 projects[readonlymode][subdir] = contrib
 projects[readonlymode][version] = 1.0
 
