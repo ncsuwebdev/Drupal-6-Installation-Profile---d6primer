@@ -653,9 +653,14 @@ function configure_captcha() {
  * Configures backup and migrate
  */
 function configure_backup_migrate() {
+  /* disabled for aegir
+
   gen_backup_migrate_profile();
   gen_backup_migrate_destinations();
   gen_backup_migrate_schedules();
+
+  */
+
   watchdog('d6primer_profile', 'Configured backup and migrate');
 }
 
