@@ -418,8 +418,8 @@ function configure_variables() {
 
   // Configures cache settings
   variable_set('page_compression', '0');
-  variable_set('block_cache', '0');
-  variable_set('cache', '0');
+  variable_set('block_cache', '1');
+  variable_set('cache', '1');
   watchdog('d6primer_profile', 'Configured cache settings');
 
   // Configure user registration
