@@ -138,6 +138,7 @@ function d6primer_profile_task_list() {
   	'task_create_standard_menu_links' => st('Create Standard Menu Links'),
   	'task_configure_blocks' => st('Configure Blocks'),
   	'task_configure_gcal_events' => st('Configure GCal Events Module'),
+    'task_enable_general_feature' => st('Enable General Feature'),
   	'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
@@ -266,11 +267,11 @@ function d6primer_profile_tasks(&$task, $url) {
 	// Run 'task_configure_gcal_events' task
 	if ($task == 'task_configure_gcal_events') {
     	configure_gcal_events();
-		$task = 'enable_general_feature';
+		$task = 'task_enable_general_feature';
 	}
 
-  // Run 'enable_general_feature' task
-  if ($task == 'enable_general_feature') {
+  // Run 'task_enable_general_feature' task
+  if ($task == 'task_enable_general_feature') {
       enable_general_feature();
     $task = 'task_configure_cleanup';
   }
