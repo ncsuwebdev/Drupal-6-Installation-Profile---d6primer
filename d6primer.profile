@@ -266,8 +266,14 @@ function d6primer_profile_tasks(&$task, $url) {
 	// Run 'task_configure_gcal_events' task
 	if ($task == 'task_configure_gcal_events') {
     	configure_gcal_events();
-		$task = 'task_configure_cleanup';
+		$task = 'enable_general_feature';
 	}
+
+  // Run 'enable_general_feature' task
+  if ($task == 'enable_general_feature') {
+      enable_general_feature();
+    $task = 'task_configure_cleanup';
+  }
   
   	// Run 'task_configure_cleanup' task
   	if ($task == 'task_configure_cleanup') {
@@ -994,4 +1000,12 @@ function configure_gcal_events() {
 	
   watchdog('d6primer_profile', 'Configured GCal Events Academic Calendar Block');
 	
+}
+
+function enable_general_feature() {
+
+  module_enable('d6primergeneralfeature');
+
+  watchdog('d6primer_profile', 'Enabled general feature');
+
 }

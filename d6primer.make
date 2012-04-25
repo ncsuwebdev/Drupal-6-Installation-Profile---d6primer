@@ -249,6 +249,12 @@ projects[ncsuroles][subdir] = ncstate
 projects[ncsuroles][version] = 1.2
 projects[ncsuroles][location] = http://drupal.ncsu.edu/features/fserver
 
+projects[d6primergeneralfeature][type] = module
+projects[d6primergeneralfeature][subdir] = ncstate
+projects[d6primergeneralfeature][download][type] = git
+projects[d6primergeneralfeature][download][url] = git://github.com/ncsuwebdev/Drupal-6-Installation-Profile---General-Feature-Module.git
+projects[d6primergeneralfeature][download][branch] = 6.x-1.8
+
 ; ************************
 ; NC STATE FEATURES
 ; ************************
