@@ -55,7 +55,6 @@ function d6primer_profile_modules() {
   	'adminrole',
     'advanced_help',
   	'auto_nodetitle',
-    'backup_migrate',
     'block_access',
     'captcha',
     'content',
