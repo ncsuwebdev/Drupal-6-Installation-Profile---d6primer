@@ -98,7 +98,8 @@ function d6primer_profile_modules() {
   	'wysiwyg',
   );
   $custom_modules = array(
-  	'ncstatebrandingbar',
+  	'd6primergeneralfeature',
+    'ncstatebrandingbar',
   	'ncsuphplibrary',  
     'ncsuroles',
   	'wraplogin',
