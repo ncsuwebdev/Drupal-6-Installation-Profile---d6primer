@@ -5,7 +5,7 @@
 core = 6.x
 api = 2
 
-projects[drupal][version] = 6.25
+projects[drupal][version] = 6.26
 
 ; ************************
 ; CONTRIB MODULES
