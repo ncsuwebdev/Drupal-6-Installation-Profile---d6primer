@@ -144,7 +144,7 @@ projects[phone][subdir] = contrib
 projects[phone][version] = 2.18
 
 projects[readonlymode][subdir] = contrib
-projects[readonlymode][version] = 1.0
+projects[readonlymode][version] = 1.1
 
 projects[recaptcha][subdir] = contrib
 projects[recaptcha][version] = 1.7
@@ -201,7 +201,7 @@ projects[webform_validation][subdir] = contrib
 projects[webform_validation][version] = 1.5
 
 projects[webform][subdir] = contrib
-projects[webform][version] = 3.17
+projects[webform][version] = 3.18
 
 projects[wysiwyg][subdir] = contrib
 projects[wysiwyg][version] = 2.4
@@ -253,7 +253,7 @@ projects[d6primergeneralfeature][type] = module
 projects[d6primergeneralfeature][subdir] = ncstate
 projects[d6primergeneralfeature][download][type] = git
 projects[d6primergeneralfeature][download][url] = git://github.com/ncsuwebdev/Drupal-6-Installation-Profile---General-Feature-Module.git
-projects[d6primergeneralfeature][download][branch] = 6.x-1.9
+projects[d6primergeneralfeature][download][branch] = 6.x-1.10
 
 ; ************************
 ; NC STATE FEATURES

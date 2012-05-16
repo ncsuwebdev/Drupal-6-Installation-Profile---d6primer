@@ -950,12 +950,12 @@ function configure_gcal_events() {
     mkdir($cacheParent, 0755, false);	
   }
   if(!is_dir($cachePath)) {
-    mkdir($cachePath, 0755, false); 
+    mkdir($cachePath, 0777, false); 
   }
 
   // check file permissions, if not 0755 then set
-  if(substr(sprintf('%o', fileperms($cachePath)), -4) != 0755) {
-    chmod($cachePath, 0755);
+  if(substr(sprintf('%o', fileperms($cachePath)), -4) != 0777) {
+    chmod($cachePath, 0777);
   }
 
 	
@@ -967,7 +967,8 @@ function configure_gcal_events() {
 	watchdog('d6primer_profile', 'Configured GCal Events Module');
 	
 	variable_set('gcal_events_num_blocks', 1);
-	
+  variable_set('gcal_events_item_list', 0);
+
 	$delta = 0;
 	$private_id = '927973de0296fbd3520681e5bd96f921';
 	
