@@ -69,7 +69,7 @@ projects[filefield][subdir] = contrib
 projects[filefield][version] = 3.10
 
 projects[gcal_events][subdir] = contrib
-projects[gcal_events][version] = 1.4
+projects[gcal_events][version] = 1.x-dev
 
 projects[globalredirect][subdir] = contrib
 projects[globalredirect][version] = 1.4
