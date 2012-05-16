@@ -969,7 +969,8 @@ function configure_gcal_events() {
 	variable_set('gcal_events_block_'. $delta, $delta);
 	variable_set('gcal_events_admin_name_'. $delta, 'NC State Academic Calendar');
 	variable_set('gcal_events_calendar_id_'. $delta, 'ncsu.edu_507c8794r25bnebhjrrh3i5c4s@group.calendar.google.com');
-	variable_set('gcal_events_cache_duration_'. $delta, '3600');
+	variable_set('gcal_events_cache_'. $delta, $filesDirectoryPath . '/cache');
+  variable_set('gcal_events_cache_duration_'. $delta, '3600');
 	variable_set('gcal_events_num_events_'. $delta, '5');
 	variable_set('gcal_events_dateformat_'. $delta, 'j F, Y');
 	variable_set('gcal_events_timeformat_'. $delta, 'g:ia');
