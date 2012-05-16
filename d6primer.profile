@@ -938,16 +938,18 @@ function configure_gcal_events() {
 	// get gcal_events directory
 	$modulePath = drupal_get_path('module', 'gcal_events');	
 	
+  $filesDirectoryPath = file_directory_path();
+
 	$simplePieLibraryPath = libraries_get_path('simplepie');
 	
 	// create cache directory in gcal_events directory, make writable by server
-	if(!is_dir($modulePath . '/cache')) {
-    mkdir($modulePath . '/cache', 0755, false);	
+	if(!is_dir($filesDirectoryPath . '/cache')) {
+    mkdir($filesDirectoryPath . '/cache', 0755, false);	
   }
 
   // check file permissions, if not 0755 then set
-  if(substr(sprintf('%o', fileperms($modulePath . '/cache')), -4) != 0755) {
-    chmod($modulePath . '/cache', 0755);
+  if(substr(sprintf('%o', fileperms($filesDirectoryPath . '/cache')), -4) != 0755) {
+    chmod($filesDirectoryPath . '/cache', 0755);
   }
 
 	
