@@ -938,7 +938,7 @@ function configure_gcal_events() {
 	// get gcal_events directory
 	$modulePath = drupal_get_path('module', 'gcal_events');	
 	
-  $filesDirectoryPath = base_path() . 'sites/default/files';
+  $filesDirectoryPath = base_path() . '/sites/default/files';
 
 	$simplePieLibraryPath = libraries_get_path('simplepie');
 	
