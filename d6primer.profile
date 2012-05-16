@@ -938,18 +938,16 @@ function configure_gcal_events() {
 	// get gcal_events directory
 	$modulePath = drupal_get_path('module', 'gcal_events');	
 	
-  $filesDirectoryPath = base_path() . '/sites/default/files';
-
 	$simplePieLibraryPath = libraries_get_path('simplepie');
 	
 	// create cache directory in gcal_events directory, make writable by server
-	if(!is_dir($filesDirectoryPath . '/cache')) {
-    mkdir($filesDirectoryPath . '/cache', 0755, false);	
+	if(!is_dir($modulePath . '/cache')) {
+    mkdir($modulePath . '/cache', 0755, false);	
   }
 
   // check file permissions, if not 0755 then set
-  if(substr(sprintf('%o', fileperms($filesDirectoryPath . '/cache')), -4) != 0755) {
-    chmod($filesDirectoryPath . '/cache', 0755);
+  if(substr(sprintf('%o', fileperms($modulePath . '/cache')), -4) != 0755) {
+    chmod($modulePath . '/cache', 0755);
   }
 
 	
@@ -969,8 +967,7 @@ function configure_gcal_events() {
 	variable_set('gcal_events_block_'. $delta, $delta);
 	variable_set('gcal_events_admin_name_'. $delta, 'NC State Academic Calendar');
 	variable_set('gcal_events_calendar_id_'. $delta, 'ncsu.edu_507c8794r25bnebhjrrh3i5c4s@group.calendar.google.com');
-	variable_set('gcal_events_cache'. $delta, $filesDirectoryPath . '/cache');
-  variable_set('gcal_events_cache_duration_'. $delta, '3600');
+	variable_set('gcal_events_cache_duration_'. $delta, '3600');
 	variable_set('gcal_events_num_events_'. $delta, '5');
 	variable_set('gcal_events_dateformat_'. $delta, 'j F, Y');
 	variable_set('gcal_events_timeformat_'. $delta, 'g:ia');
