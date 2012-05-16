@@ -938,7 +938,7 @@ function configure_gcal_events() {
 	// get gcal_events directory
 	$modulePath = drupal_get_path('module', 'gcal_events');	
 	
-  $filesDirectoryPath = file_directory_path();
+  $filesDirectoryPath = base_path() . 'sites/default/files';
 
 	$simplePieLibraryPath = libraries_get_path('simplepie');
 	
@@ -969,7 +969,7 @@ function configure_gcal_events() {
 	variable_set('gcal_events_block_'. $delta, $delta);
 	variable_set('gcal_events_admin_name_'. $delta, 'NC State Academic Calendar');
 	variable_set('gcal_events_calendar_id_'. $delta, 'ncsu.edu_507c8794r25bnebhjrrh3i5c4s@group.calendar.google.com');
-	variable_set('gcal_events_cache_'. $delta, $filesDirectoryPath . '/cache');
+	variable_set('gcal_events_cache'. $delta, $filesDirectoryPath . '/cache');
   variable_set('gcal_events_cache_duration_'. $delta, '3600');
 	variable_set('gcal_events_num_events_'. $delta, '5');
 	variable_set('gcal_events_dateformat_'. $delta, 'j F, Y');
