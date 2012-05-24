@@ -45,6 +45,8 @@ function get_moderator_permissions() {
   	'administer users'.
   	'administer site configuration',
   	'administer primer manager',
+    'use advanced search',
+    'access user profiles',
   );
 }
 
