@@ -47,6 +47,7 @@ function get_moderator_permissions() {
   	'administer primer manager',
     'use advanced search',
     'access user profiles',
+    'select different theme',
   );
 }
 

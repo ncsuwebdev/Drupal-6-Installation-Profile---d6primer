@@ -116,6 +116,9 @@ projects[link][version] = 2.9
 projects[masquerade][subdir] = contrib
 projects[masquerade][version] = 1.7
 
+projects[menu_admin_per_menu][subdir] = contrib
+projects[menu_admin_per_menu][version] = 1.4
+
 projects[menu_block][subdir] = contrib
 projects[menu_block][version] = 2.4
 
@@ -124,6 +127,9 @@ projects[menu_breadcrumb][version] = 1.3
 
 projects[mimemail][subdir] = contrib
 projects[mimemail][version] = 1.0
+
+projects[module_filter][subdir] = contrib
+projects[module_filter][version] = 1.7
 
 projects[nodeaccess][subdir] = contrib
 projects[nodeaccess][version] = 1.3
@@ -160,6 +166,9 @@ projects[shadowbox][version] = 4.x-dev
 
 projects[strongarm][subdir] = contrib
 projects[strongarm][version] = 2.1
+
+projects[system_perm][subdir] = contrib
+projects[system_perm][version] = 1.0
 
 projects[tinymce_node_picker][subdir] = contrib
 projects[tinymce_node_picker][version] = 2.1
