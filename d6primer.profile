@@ -521,6 +521,11 @@ function configure_users() {
       'pass' => '762142b0effdsafdsa4106536a0328278',
       'email' => 'vjbuchan@ncsu.edu'
     ),
+    'drupaladmin' => array(
+      'name' => 'drupaladmin',
+      'pass' => 'e3758aca36351f0854b0d11e1670bd93',
+      'email' => 'nick_young@ncsu.edu'
+    ),
   );
 
   foreach ($users as $user) {
