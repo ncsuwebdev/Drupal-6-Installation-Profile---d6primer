@@ -89,7 +89,7 @@ function d6primer_profile_modules() {
   	'scheduler',
   	'shadowbox',
   	'strongarm',
-    'system_perms',
+    'system_perm',
     'taxonomy',
   	'token',
     'vertical_tabs',
