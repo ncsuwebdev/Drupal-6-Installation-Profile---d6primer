@@ -176,6 +176,9 @@ projects[tinymce_node_picker][version] = 2.1
 projects[token][subdir] = contrib
 projects[token][version] = 1.18
 
+projects[video_filter][subdir] = contrib
+projects[video_filter][version] = 3.0
+
 projects[vertical_tabs][subdir] = contrib
 projects[vertical_tabs][version] = 1.0-rc2
 

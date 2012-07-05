@@ -48,7 +48,7 @@ function d6primer_profile_modules() {
     'taxonomy',
     'upload',
     'user',
-	'filter', 
+	  'filter', 
   );
   $contrib_modules = array(
     'admin_menu',
@@ -76,6 +76,7 @@ function d6primer_profile_modules() {
     'masquerade',
     'menu_block',
     'menu_breadcrumb',
+    'module_filter',
     'nodewords_basic',
     'nodewords_tokens',
     'nodewords_ui',
@@ -88,6 +89,7 @@ function d6primer_profile_modules() {
   	'scheduler',
   	'shadowbox',
   	'strongarm',
+    'system_perms',
     'taxonomy',
   	'token',
     'vertical_tabs',
