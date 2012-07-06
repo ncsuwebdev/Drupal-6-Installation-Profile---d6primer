@@ -197,94 +197,88 @@ function d6primer_profile_tasks(&$task, $url) {
 	  
 	// Run 'task_configure_nodewords' task
 	if ($task == 'task_configure_nodewords') {
-	  configure_nodewords();
-	  $task = 'task_configure_contact';
+	   configure_nodewords();
+	   $task = 'task_configure_contact';
 	}
 	  
 	// Run 'task_configure_contact' task
 	if ($task == 'task_configure_contact') {
-	  configure_contact();
-	  $task = 'task_configure_captcha';
+	   configure_contact();
+	   $task = 'task_configure_captcha';
 	}
 	
 	// Run 'task_configure_contact' task
 	if ($task == 'task_configure_captcha') {
-	  configure_captcha();
-	  $task = 'task_configure_backup_migrate';
+	   configure_captcha();
+	   $task = 'task_configure_backup_migrate';
 	}
 	
 	// Run 'task_configure_backup_migrate' task
 	if ($task == 'task_configure_backup_migrate') {
-	  configure_backup_migrate();
-	  $task = 'task_enable_feature_primer_home_page_slider';
+	   configure_backup_migrate();
+	   $task = 'task_enable_feature_primer_home_page_slider';
 	}
 	  
 	// Run 'task_enable_feature_primer_home_page_slider' task
 	if ($task == 'task_enable_feature_primer_home_page_slider') {
-	  enable_feature_primer_home_page_slider();
-	  $task = 'task_configure_feature_primer_home_page_slider';
+	   enable_feature_primer_home_page_slider();
+	   $task = 'task_configure_feature_primer_home_page_slider';
 	}
 	  
 	// Run 'task_configure_feature_primer_home_page_slider' task
 	if ($task == 'task_configure_feature_primer_home_page_slider') {
-	  configure_feature_primer_home_page_slider();
-	  $task = 'task_enable_feature_primer_photo_gallery';
+	   configure_feature_primer_home_page_slider();
+	   $task = 'task_enable_feature_primer_photo_gallery';
 	}
 	
 	// Run 'task_enable_feature_primer_photo_gallery' task
 	if ($task == 'task_enable_feature_primer_photo_gallery') {
-	  enable_feature_primer_photo_gallery();
-	  $task = 'task_configure_feature_primer_photo_gallery';
+	   enable_feature_primer_photo_gallery();
+	   $task = 'task_configure_feature_primer_photo_gallery';
 	}
 	
 	// Run 'task_configure_feature_primer_photo_gallery' task
 	if ($task == 'task_configure_feature_primer_photo_gallery') {
-	  configure_feature_primer_photo_gallery();
-	  $task = 'task_create_first_node';
+	   configure_feature_primer_photo_gallery();
+	   $task = 'task_create_first_node';
 	}
   
   	// Run 'task_create_first_node' task
 	if ($task == 'task_create_first_node') {
     	create_first_node();
-		$task = 'task_create_standard_menus';
+		  $task = 'task_create_standard_menus';
 	}
 	
 	// Run 'task_create_standard_menus' task
 	if ($task == 'task_create_standard_menus') {
     	create_standard_menus();
-		$task = 'task_create_standard_menu_links';
+		  $task = 'task_create_standard_menu_links';
 	}
 	
 	// Run 'task_create_standard_menu_links' task
 	if ($task == 'task_create_standard_menu_links') {
     	create_standard_menu_links();
-		$task = 'task_configure_blocks';
+		  $task = 'task_configure_blocks';
 	}
 	
 	// Run 'task_configure_blocks' task
 	if ($task == 'task_configure_blocks') {
     	configure_blocks();
-		$task = 'task_configure_gcal_events';
+		  $task = 'task_configure_gcal_events';
 	}
 	
 	// Run 'task_configure_gcal_events' task
 	if ($task == 'task_configure_gcal_events') {
     	configure_gcal_events();
-		$task = 'task_enable_general_feature';
+	   	$task = 'task_configure_cleanup';
 	}
-
-  // Run 'task_enable_general_feature' task
-  if ($task == 'task_enable_general_feature') {
-      enable_general_feature();
-    $task = 'task_configure_cleanup';
-  }
   
   	// Run 'task_configure_cleanup' task
-  	if ($task == 'task_configure_cleanup') {
+  if ($task == 'task_configure_cleanup') {
   		drupal_flush_all_caches();
     	drupal_cron_run();
     	$task = 'profile-finished';
-  	}
+  }
   
 }
 
@@ -1018,12 +1012,4 @@ function configure_gcal_events() {
 	
   watchdog('d6primer_profile', 'Configured GCal Events Academic Calendar Block');
 	
-}
-
-function enable_general_feature() {
-
-  module_enable('d6primergeneralfeature');
-
-  watchdog('d6primer_profile', 'Enabled general feature');
-
 }
