@@ -245,7 +245,7 @@ projects[primer][version] = 3.7
 projects[primer][location] = http://drupal.ncsu.edu/features/fserver
 
 projects[primermanager][subdir] = ncstate
-projects[primermanager][version] = 1.0
+projects[primermanager][version] = 1.2
 projects[primermanager][location] = http://drupal.ncsu.edu/features/fserver
 
 projects[wraplogin][subdir] = ncstate
