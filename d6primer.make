@@ -155,6 +155,9 @@ projects[readonlymode][version] = 1.1
 projects[recaptcha][subdir] = contrib
 projects[recaptcha][version] = 1.7
 
+projects[restrict_ip][subdir] = contrib
+projects[restrict_ip][version] = 1.0
+
 projects[role_delegation][subdir] = contrib
 projects[role_delegation][version] = 1.4
 
