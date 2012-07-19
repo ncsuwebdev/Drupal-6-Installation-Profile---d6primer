@@ -48,7 +48,7 @@ function d6primer_profile_modules() {
     'taxonomy',
     'upload',
     'user',
-	  'filter', 
+	  'filter',
   );
   $contrib_modules = array(
     'admin_menu',
@@ -102,12 +102,12 @@ function d6primer_profile_modules() {
   $custom_modules = array(
   	'd6primergeneralfeature',
     'ncstatebrandingbar',
-  	'ncsuphplibrary',  
+  	'ncsuphplibrary',
     'ncsuroles',
   	'wraplogin',
   	'primermanager',
   );
-  
+
   return array_merge($core_modules, $contrib_modules, $custom_modules);
 }
 
@@ -162,7 +162,7 @@ function d6primer_profile_task_list() {
  */
 
 function d6primer_profile_tasks(&$task, $url) {
-	
+
 	// Run 'profile' task
 	if ($task == 'profile') {
 	  // Uninstalling the updates notification by default
@@ -170,116 +170,116 @@ function d6primer_profile_tasks(&$task, $url) {
 	  $task = 'task_configure_theme';
 	  watchdog('d6primer_profile', 'running profile task');
 	}
-	
+
 	// Run 'task_configure_theme' task
 	if ($task == 'task_configure_theme') {
 	  configure_theme();
 	  $task = 'task_configure_editor';
 	}
-	  
+
 	// Run 'task_configure_editor' task
 	if ($task == 'task_configure_editor') {
 	  configure_editor();
 	  $task = 'task_configure_variables';
 	}
-	  
+
 	// Run 'task_configure_editor' task
 	if ($task == 'task_configure_variables') {
 	  configure_variables();
 	  $task = 'task_configure_users';
 	}
-	  
+
 	// Run 'task_configure_users' task
 	if ($task == 'task_configure_users') {
 	  configure_users();
 	  $task = 'task_configure_nodewords';
 	}
-	  
+
 	// Run 'task_configure_nodewords' task
 	if ($task == 'task_configure_nodewords') {
 	   configure_nodewords();
 	   $task = 'task_configure_contact';
 	}
-	  
+
 	// Run 'task_configure_contact' task
 	if ($task == 'task_configure_contact') {
 	   configure_contact();
 	   $task = 'task_configure_captcha';
 	}
-	
+
 	// Run 'task_configure_contact' task
 	if ($task == 'task_configure_captcha') {
 	   configure_captcha();
 	   $task = 'task_configure_backup_migrate';
 	}
-	
+
 	// Run 'task_configure_backup_migrate' task
 	if ($task == 'task_configure_backup_migrate') {
 	   configure_backup_migrate();
 	   $task = 'task_enable_feature_primer_home_page_slider';
 	}
-	  
+
 	// Run 'task_enable_feature_primer_home_page_slider' task
 	if ($task == 'task_enable_feature_primer_home_page_slider') {
 	   enable_feature_primer_home_page_slider();
 	   $task = 'task_configure_feature_primer_home_page_slider';
 	}
-	  
+
 	// Run 'task_configure_feature_primer_home_page_slider' task
 	if ($task == 'task_configure_feature_primer_home_page_slider') {
 	   configure_feature_primer_home_page_slider();
 	   $task = 'task_enable_feature_primer_photo_gallery';
 	}
-	
+
 	// Run 'task_enable_feature_primer_photo_gallery' task
 	if ($task == 'task_enable_feature_primer_photo_gallery') {
 	   enable_feature_primer_photo_gallery();
 	   $task = 'task_configure_feature_primer_photo_gallery';
 	}
-	
+
 	// Run 'task_configure_feature_primer_photo_gallery' task
 	if ($task == 'task_configure_feature_primer_photo_gallery') {
 	   configure_feature_primer_photo_gallery();
 	   $task = 'task_create_first_node';
 	}
-  
+
   	// Run 'task_create_first_node' task
 	if ($task == 'task_create_first_node') {
     	create_first_node();
 		  $task = 'task_create_standard_menus';
 	}
-	
+
 	// Run 'task_create_standard_menus' task
 	if ($task == 'task_create_standard_menus') {
     	create_standard_menus();
 		  $task = 'task_create_standard_menu_links';
 	}
-	
+
 	// Run 'task_create_standard_menu_links' task
 	if ($task == 'task_create_standard_menu_links') {
     	create_standard_menu_links();
 		  $task = 'task_configure_blocks';
 	}
-	
+
 	// Run 'task_configure_blocks' task
 	if ($task == 'task_configure_blocks') {
     	configure_blocks();
 		  $task = 'task_configure_gcal_events';
 	}
-	
+
 	// Run 'task_configure_gcal_events' task
 	if ($task == 'task_configure_gcal_events') {
     	configure_gcal_events();
 	   	$task = 'task_configure_cleanup';
 	}
-  
+
   	// Run 'task_configure_cleanup' task
   if ($task == 'task_configure_cleanup') {
   		drupal_flush_all_caches();
     	drupal_cron_run();
     	$task = 'profile-finished';
   }
-  
+
 }
 
 function get_theme_name() {
@@ -302,21 +302,21 @@ function configure_theme() {
   // Disables garland theme
   db_query("UPDATE {system} SET status = 0 WHERE type = 'theme' and name = ('garland')");
   watchdog('d6primer_profile', 'Configured theme');
-  
+
 }
 
 /**
  * Configure Editor Task
  */
 function configure_editor() {
-  
+
   $enable_modules = array(
   	'tinymce_node_picker',
   );
-  	
-  module_enable($enable_modules);	
 
-	
+  module_enable($enable_modules);
+
+
   $tiny_conf = get_tinymce_conf();
 
   $result = db_query("INSERT INTO {wysiwyg}
@@ -396,12 +396,12 @@ function configure_editor() {
  * Configure Variables Task
  */
 function configure_variables() {
-  
-  
-	
+
+
+
   //configure clean urls
-  variable_set('clean_url', 1);	
-	
+  variable_set('clean_url', 1);
+
   // Configuring date formats
   variable_set('date_default_timezone', '-14400');
   variable_set('date_first_day', '0');
@@ -413,7 +413,7 @@ function configure_variables() {
   variable_set('date_format_short_custom', 'm/d/Y - H:i');
   watchdog('d6primer_profile', 'Configured date/time formats');
 
-  // Configures file system 
+  // Configures file system
   variable_set('file_directory_temp', '/tmp');
   variable_set('upload_uploadsize_default', 5);
   variable_set('upload_usersize_default', 1024);
@@ -475,7 +475,7 @@ function configure_variables() {
   // configure nc state brand bar settings
   variable_set('ncstatebrandingbar_select_version', 'red_on_white__centered');
   watchdog('d6primer_profile', 'Configured nc state brand bar');
-  
+
 }
 
 /**
@@ -493,7 +493,7 @@ function configure_users() {
       db_query("INSERT INTO {role} (name) VALUES ('%s')", $role);
     }
     $rid = db_result(db_query("SELECT rid FROM {role} WHERE name = '%s'", $role));
-    
+
     // Remove any existing permissions
     db_query('DELETE FROM {permission} WHERE rid = %d', $rid);
 
@@ -679,7 +679,7 @@ function enable_feature_primer_home_page_slider() {
     $enable_modules = array(
   		'primer_home_page_slider',
   	);
-  	
+
   	module_enable($enable_modules);
 
   	watchdog('d6primer_profile', 'Enabled home page slider feature');
@@ -689,60 +689,60 @@ function enable_feature_primer_home_page_slider() {
  * Configures home page slider
  */
 function configure_feature_primer_home_page_slider() {
-    
+
 	/*
 	 *  @todo change this to actually look up the correct value.
-	 *  
+	 *
 	 *  Worked on this for a long time, but cannot get the query to work
 	 *  because the feature schema (i think) isn't ready yet, so there's
 	 *  no value in the DB when this runs.
-	 *  
+	 *
 	 *  So for now...just manualy insert of the term with a parent id of 1
 	 *  as it should be the only vocabulary
-	 *  
+	 *
 	 *  This will break things though if another module/feature is added that
 	 *  also create vocabularies before this is run
-	 * 
+	 *
 	 */
-	
+
 	/*
 	$name = 'Syndication';
 	$limit = 1;
-	$query = db_query("SELECT * FROM {vocabulary} WHERE name = '%s' LIMIT %d", $name, $limit);    
+	$query = db_query("SELECT * FROM {vocabulary} WHERE name = '%s' LIMIT %d", $name, $limit);
 	while ($row = db_fetch_array($query)) { // this returns the row as an array, use db_fetch_object to get an object
 	  $vid = $row['vid'];
 	}
 	*/
-	
+
   	$term = array(
 		'vid' => 1, // Vocabulary ID
 		'name' => 'Home Page Slider', // Term Name
 	);
-	
+
 	taxonomy_save_term($term);
-          
+
 	watchdog('d6primer_profile', 'Configured home page slider feature');
-	
+
 };
 
 /**
  * Enables photo gallery feature
  */
 function enable_feature_primer_photo_gallery() {
-    
+
 	// enable these other modules in this function, because ctools needs to exist before these will work.
 	// otherwise you will get an error like:
 	// "Fatal error: Call to undefined function ctools_include() in ... context/context.module on line 459"
-	
+
 	/* commenting out for testing purposes
 
   $enable_modules = array(
   		'context',
     	'imagefield',
-    	'filefield',	
+    	'filefield',
     	'primer_photo_gallery',
   	);
-  	
+
   	module_enable($enable_modules);
 
     */
@@ -756,41 +756,41 @@ function enable_feature_primer_photo_gallery() {
  * Configures photo gallery feature
  */
 function configure_feature_primer_photo_gallery() {
-              
+
 	// no steps yet...just a place holder for now
-	
+
 	watchdog('d6primer_profile', 'Configured photo gallery feature');
-	
+
 };
 
 function create_first_node() {
 
 	$node = new StdClass();
 	//creating a bare node
-	
+
 	$node->type = 'page';
 	//giving it type
-	
+
 	$node->status = 1;
 	//give it a published staus
-	
+
 	$node->title = "Welcome";
 	//gives title
-	
+
 	$node->body = "This is a brand new website. An Administrator still needs to log in and update some content.";
 	//gives body
-	
+
 	node_save($node);
 	//save it and give it the rest of the attributes
-	
-	 variable_set('site_frontpage', 'node/1');	
-  
+
+	 variable_set('site_frontpage', 'node/1');
+
   watchdog('d6primer_profile', 'Added first node and set as home page');
 
 }
 
 function create_standard_menus() {
-	
+
 	// Building menus
   $menus = array(
     'footer' => array(
@@ -808,11 +808,11 @@ function create_standard_menus() {
   foreach ($menus as $menu) {
     drupal_write_record('menu_custom', $menu);
   };
-	
+
 }
 
 function create_standard_menu_links() {
-	
+
 	$links = array(
 	    'home' => array(
 	      'menu_name' => 'menu-footer-links',
@@ -879,13 +879,13 @@ function create_standard_menu_links() {
 	foreach ($links as $link) {
 		menu_link_save($link);
 	}
-	
+
 }
 
 function configure_blocks() {
-	
+
 	db_query("UPDATE {blocks} SET status = 0 where theme = '%s'", get_theme_name());
-	
+
 	$blocks = array(
 	    'footer-links' => array(
 	      'module' => 'menu',
@@ -931,27 +931,27 @@ function configure_blocks() {
 
   }
   watchdog('d6primer_profile', 'Configured blocks');
-  
+
 }
 
 function configure_gcal_events() {
-	
+
 	// get gcal_events directory
-	$modulePath = drupal_get_path('module', 'gcal_events');	
-	
+	$modulePath = drupal_get_path('module', 'gcal_events');
+
   $cacheParent = file_directory_path() . '/gcal_events';
   $cachePath = $cacheParent . '/cache';
 
 	$simplePieLibraryPath = libraries_get_path('simplepie');
-	
+
 	// module stores cache in files directory (since dev version)
 
   // create cache directory in files directory, make writable by server
 	if(!is_dir($cacheParent)) {
-    mkdir($cacheParent, 0755, false);	
+    mkdir($cacheParent, 0755, false);
   }
   if(!is_dir($cachePath)) {
-    mkdir($cachePath, 0777, false); 
+    mkdir($cachePath, 0777, false);
   }
 
   // check file permissions, if not 0755 then set
@@ -959,20 +959,20 @@ function configure_gcal_events() {
     chmod($cachePath, 0777);
   }
 
-	
+
 	// copy simplepie.inc from libraries directory to gcal_events directory
 	if(!file_exists($modulePath . '/simplepie.inc')) {
     copy($simplePieLibraryPath . '/simplepie.inc', $modulePath . '/simplepie.inc');
   }
-	
+
 	watchdog('d6primer_profile', 'Configured GCal Events Module');
-	
+
 	variable_set('gcal_events_num_blocks', 1);
   variable_set('gcal_events_item_list', 0);
 
 	$delta = 0;
 	$private_id = '927973de0296fbd3520681e5bd96f921';
-	
+
 	//variable_set('gcal_events_private_id_'. $delta, $private_id);
 	variable_set('gcal_events_block_'. $delta, $delta);
 	variable_set('gcal_events_admin_name_'. $delta, 'NC State Academic Calendar');
@@ -989,7 +989,7 @@ function configure_gcal_events() {
 	variable_set('gcal_events_template_loc_'. $delta, '#LOC#');
 	variable_set('gcal_events_empty_'. $delta, 'No events to display');
 	variable_set('gcal_events_footer_'. $delta, '<a href="http://go.ncsu.edu/drupal-acad-calendar-more-link" target="_blank" title="Subscribe & view all events">Subscribe & view all events</a>');
-	
+
 	//configure first calendar block for gcal events to use NC State Academic Calendar
 	$blocks = array(
 	    'gcal_events_private_id_'. $delta => array(
@@ -1008,8 +1008,8 @@ function configure_gcal_events() {
     drupal_write_record('blocks', $block);
 
   }
-  
-	
+
+
   watchdog('d6primer_profile', 'Configured GCal Events Academic Calendar Block');
-	
+
 }

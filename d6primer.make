@@ -179,6 +179,9 @@ projects[tinymce_node_picker][version] = 2.1
 projects[token][subdir] = contrib
 projects[token][version] = 1.18
 
+projects[twitter][subdir] = contrib
+projects[twitter[version] = 3.0-beta9
+
 projects[video_filter][subdir] = contrib
 projects[video_filter][version] = 3.0
 
