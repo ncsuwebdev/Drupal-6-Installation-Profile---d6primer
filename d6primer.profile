@@ -452,8 +452,9 @@ function configure_variables() {
   watchdog('d6primer_profile', 'Configured menu blocks');
 
   // Concigure input formats
-  variable_set('allowed_html_1', '<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <p> <span> <img> <div> <h3> <h4> <h5> <h6> <br> <blockquote> <table> <tbody> <tr> <th> <td> <sup> <sub>');
-  watchdog('d6primer_profile', 'Configured input formats');
+  // commenting out to see if this disables the HTML Filter for the input format (which was causing problems for inline images from wysiwyg)
+  //variable_set('allowed_html_1', '<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <p> <span> <img> <div> <h3> <h4> <h5> <h6> <br> <blockquote> <table> <tbody> <tr> <th> <td> <sup> <sub>');
+  //watchdog('d6primer_profile', 'Configured input formats');
 
   // Configure shadowbox settings
   variable_set('shadowbox_location', 'profiles/d6primer/libraries/shadowbox');
