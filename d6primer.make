@@ -45,7 +45,7 @@ projects[css_injector][subdir] = contrib
 projects[css_injector][version] = 1.4
 
 projects[ctools][subdir] = contrib
-projects[ctools][version] = 1.8
+projects[ctools][version] = 1.9
 
 projects[date][subdir] = contrib
 projects[date][version] = 2.8
@@ -87,7 +87,7 @@ projects[imagecache_profiles][subdir] = contrib
 projects[imagecache_profiles][version] = 1.4-rc1
 
 projects[imagecache][subdir] = contrib
-projects[imagecache][version] = 2.0-beta12
+projects[imagecache][version] = 2.0-rc1
 
 projects[imagefield][subdir] = contrib
 projects[imagefield][version] = 3.10
@@ -138,7 +138,7 @@ projects[nodereference_url][subdir] = contrib
 projects[nodereference_url][version] = 1.11
 
 projects[nodewords][subdir] = contrib
-projects[nodewords][version] = 2.x-dev
+projects[nodewords][version] = 2.0-alpha1
 
 projects[path_redirect][subdir] = contrib
 projects[path_redirect][version] = 1.0-rc2
@@ -168,7 +168,7 @@ projects[shadowbox][subdir] = contrib
 projects[shadowbox][version] = 4.x-dev
 
 projects[strongarm][subdir] = contrib
-projects[strongarm][version] = 2.1
+projects[strongarm][version] = 2.2
 
 projects[system_perm][subdir] = contrib
 projects[system_perm][version] = 1.0

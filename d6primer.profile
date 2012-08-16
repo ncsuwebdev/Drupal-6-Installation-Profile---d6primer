@@ -48,13 +48,13 @@ function d6primer_profile_modules() {
     'taxonomy',
     'upload',
     'user',
-	  'filter',
+    'filter',
   );
   $contrib_modules = array(
     'admin_menu',
-  	'adminrole',
+    'adminrole',
     'advanced_help',
-  	'auto_nodetitle',
+    'auto_nodetitle',
     'block_access',
     'captcha',
     'content',
@@ -62,10 +62,10 @@ function d6primer_profile_modules() {
     'ctools',
     'extlink',
     'features',
-  	'gcal_events',
+    'gcal_events',
     'image_attach',
     'image',
-  	'imageapi_gd',
+    'imageapi_gd',
     'imageapi',
     'imagecache_ui',
     'imagecache',
@@ -85,27 +85,27 @@ function d6primer_profile_modules() {
     'pathauto',
     'readonlymode',
     'recaptcha',
-  	'role_delegation',
-  	'scheduler',
-  	'shadowbox',
-  	'strongarm',
+    'role_delegation',
+    'scheduler',
+    'shadowbox',
+    'strongarm',
     'system_perm',
     'taxonomy',
-  	'token',
+    'token',
     'vertical_tabs',
     'views',
-  	'views_ui',
+    'views_ui',
     'webform',
-  	'webform_validation',
-  	'wysiwyg',
+    'webform_validation',
+    'wysiwyg',
   );
   $custom_modules = array(
-  	'd6primergeneralfeature',
+    'd6primergeneralfeature',
     'ncstatebrandingbar',
-  	'ncsuphplibrary',
+    'ncsuphplibrary',
     'ncsuroles',
-  	'wraplogin',
-  	'primermanager',
+    'wraplogin',
+    'primermanager',
   );
 
   return array_merge($core_modules, $contrib_modules, $custom_modules);
@@ -125,24 +125,24 @@ function d6primer_profile_modules() {
 function d6primer_profile_task_list() {
   return array(
     'task_configure_theme' => st('Configure Theme'),
-  	'task_configure_editor' => st('Configure Editor'),
-  	'task_configure_variables' => st('Configure Variables'),
-  	'task_configure_users' => st('Configure Admin Users'),
-  	'task_configure_nodewords' => st('Configure Nodewords'),
-	'task_configure_contact' => st('Configure Contact Form'),
+    'task_configure_editor' => st('Configure Editor'),
+    'task_configure_variables' => st('Configure Variables'),
+    'task_configure_users' => st('Configure Admin Users'),
+    'task_configure_nodewords' => st('Configure Nodewords'),
+  'task_configure_contact' => st('Configure Contact Form'),
     'task_configure_captcha' => st('Configure Captcha/Recaptcha'),
     'task_configure_backup_migrate' => st('Configure Backup/Migrate'),
-  	'task_enable_feature_primer_home_page_slider' => st('Enable Home Page Slider Feature'),
-  	'task_configure_feature_primer_home_page_slider' => st('Configure Home Page Slider Feature'),
-  	'task_enable_feature_primer_photo_gallery' => st('Enable Photo Gallery Feature'),
-  	'task_configure_feature_primer_photo_gallery' => st('Configure Photo Gallery Feature'),
+    'task_enable_feature_primer_home_page_slider' => st('Enable Home Page Slider Feature'),
+    'task_configure_feature_primer_home_page_slider' => st('Configure Home Page Slider Feature'),
+    'task_enable_feature_primer_photo_gallery' => st('Enable Photo Gallery Feature'),
+    'task_configure_feature_primer_photo_gallery' => st('Configure Photo Gallery Feature'),
     'task_create_first_node' => st('Create First Node / Set as Home Page'),
-  	'task_create_standard_menus' => st('Create Standard Menus'),
-  	'task_create_standard_menu_links' => st('Create Standard Menu Links'),
-  	'task_configure_blocks' => st('Configure Blocks'),
-  	'task_configure_gcal_events' => st('Configure GCal Events Module'),
+    'task_create_standard_menus' => st('Create Standard Menus'),
+    'task_create_standard_menu_links' => st('Create Standard Menu Links'),
+    'task_configure_blocks' => st('Configure Blocks'),
+    'task_configure_gcal_events' => st('Configure GCal Events Module'),
     'task_enable_general_feature' => st('Enable General Feature'),
-  	'task_configure_cleanup' => st('Running cleanup tasks'),
+    'task_configure_cleanup' => st('Running cleanup tasks'),
   );
 }
 
@@ -163,127 +163,127 @@ function d6primer_profile_task_list() {
 
 function d6primer_profile_tasks(&$task, $url) {
 
-	// Run 'profile' task
-	if ($task == 'profile') {
-	  // Uninstalling the updates notification by default
-	  module_disable(array('update'));
-	  $task = 'task_configure_theme';
-	  watchdog('d6primer_profile', 'running profile task');
-	}
+  // Run 'profile' task
+  if ($task == 'profile') {
+    // Uninstalling the updates notification by default
+    module_disable(array('update'));
+    $task = 'task_configure_theme';
+    watchdog('d6primer_profile', 'running profile task');
+  }
 
-	// Run 'task_configure_theme' task
-	if ($task == 'task_configure_theme') {
-	  configure_theme();
-	  $task = 'task_configure_editor';
-	}
+  // Run 'task_configure_theme' task
+  if ($task == 'task_configure_theme') {
+    configure_theme();
+    $task = 'task_configure_editor';
+  }
 
-	// Run 'task_configure_editor' task
-	if ($task == 'task_configure_editor') {
-	  configure_editor();
-	  $task = 'task_configure_variables';
-	}
+  // Run 'task_configure_editor' task
+  if ($task == 'task_configure_editor') {
+    configure_editor();
+    $task = 'task_configure_variables';
+  }
 
-	// Run 'task_configure_editor' task
-	if ($task == 'task_configure_variables') {
-	  configure_variables();
-	  $task = 'task_configure_users';
-	}
+  // Run 'task_configure_editor' task
+  if ($task == 'task_configure_variables') {
+    configure_variables();
+    $task = 'task_configure_users';
+  }
 
-	// Run 'task_configure_users' task
-	if ($task == 'task_configure_users') {
-	  configure_users();
-	  $task = 'task_configure_nodewords';
-	}
+  // Run 'task_configure_users' task
+  if ($task == 'task_configure_users') {
+    configure_users();
+    $task = 'task_configure_nodewords';
+  }
 
-	// Run 'task_configure_nodewords' task
-	if ($task == 'task_configure_nodewords') {
-	   configure_nodewords();
-	   $task = 'task_configure_contact';
-	}
+  // Run 'task_configure_nodewords' task
+  if ($task == 'task_configure_nodewords') {
+     configure_nodewords();
+     $task = 'task_configure_contact';
+  }
 
-	// Run 'task_configure_contact' task
-	if ($task == 'task_configure_contact') {
-	   configure_contact();
-	   $task = 'task_configure_captcha';
-	}
+  // Run 'task_configure_contact' task
+  if ($task == 'task_configure_contact') {
+     configure_contact();
+     $task = 'task_configure_captcha';
+  }
 
-	// Run 'task_configure_contact' task
-	if ($task == 'task_configure_captcha') {
-	   configure_captcha();
-	   $task = 'task_configure_backup_migrate';
-	}
+  // Run 'task_configure_contact' task
+  if ($task == 'task_configure_captcha') {
+     configure_captcha();
+     $task = 'task_configure_backup_migrate';
+  }
 
-	// Run 'task_configure_backup_migrate' task
-	if ($task == 'task_configure_backup_migrate') {
-	   configure_backup_migrate();
-	   $task = 'task_enable_feature_primer_home_page_slider';
-	}
+  // Run 'task_configure_backup_migrate' task
+  if ($task == 'task_configure_backup_migrate') {
+     configure_backup_migrate();
+     $task = 'task_enable_feature_primer_home_page_slider';
+  }
 
-	// Run 'task_enable_feature_primer_home_page_slider' task
-	if ($task == 'task_enable_feature_primer_home_page_slider') {
-	   enable_feature_primer_home_page_slider();
-	   $task = 'task_configure_feature_primer_home_page_slider';
-	}
+  // Run 'task_enable_feature_primer_home_page_slider' task
+  if ($task == 'task_enable_feature_primer_home_page_slider') {
+     enable_feature_primer_home_page_slider();
+     $task = 'task_configure_feature_primer_home_page_slider';
+  }
 
-	// Run 'task_configure_feature_primer_home_page_slider' task
-	if ($task == 'task_configure_feature_primer_home_page_slider') {
-	   configure_feature_primer_home_page_slider();
-	   $task = 'task_enable_feature_primer_photo_gallery';
-	}
+  // Run 'task_configure_feature_primer_home_page_slider' task
+  if ($task == 'task_configure_feature_primer_home_page_slider') {
+     configure_feature_primer_home_page_slider();
+     $task = 'task_enable_feature_primer_photo_gallery';
+  }
 
-	// Run 'task_enable_feature_primer_photo_gallery' task
-	if ($task == 'task_enable_feature_primer_photo_gallery') {
-	   enable_feature_primer_photo_gallery();
-	   $task = 'task_configure_feature_primer_photo_gallery';
-	}
+  // Run 'task_enable_feature_primer_photo_gallery' task
+  if ($task == 'task_enable_feature_primer_photo_gallery') {
+     enable_feature_primer_photo_gallery();
+     $task = 'task_configure_feature_primer_photo_gallery';
+  }
 
-	// Run 'task_configure_feature_primer_photo_gallery' task
-	if ($task == 'task_configure_feature_primer_photo_gallery') {
-	   configure_feature_primer_photo_gallery();
-	   $task = 'task_create_first_node';
-	}
+  // Run 'task_configure_feature_primer_photo_gallery' task
+  if ($task == 'task_configure_feature_primer_photo_gallery') {
+     configure_feature_primer_photo_gallery();
+     $task = 'task_create_first_node';
+  }
 
-  	// Run 'task_create_first_node' task
-	if ($task == 'task_create_first_node') {
-    	create_first_node();
-		  $task = 'task_create_standard_menus';
-	}
+    // Run 'task_create_first_node' task
+  if ($task == 'task_create_first_node') {
+      create_first_node();
+      $task = 'task_create_standard_menus';
+  }
 
-	// Run 'task_create_standard_menus' task
-	if ($task == 'task_create_standard_menus') {
-    	create_standard_menus();
-		  $task = 'task_create_standard_menu_links';
-	}
+  // Run 'task_create_standard_menus' task
+  if ($task == 'task_create_standard_menus') {
+      create_standard_menus();
+      $task = 'task_create_standard_menu_links';
+  }
 
-	// Run 'task_create_standard_menu_links' task
-	if ($task == 'task_create_standard_menu_links') {
-    	create_standard_menu_links();
-		  $task = 'task_configure_blocks';
-	}
+  // Run 'task_create_standard_menu_links' task
+  if ($task == 'task_create_standard_menu_links') {
+      create_standard_menu_links();
+      $task = 'task_configure_blocks';
+  }
 
-	// Run 'task_configure_blocks' task
-	if ($task == 'task_configure_blocks') {
-    	configure_blocks();
-		  $task = 'task_configure_gcal_events';
-	}
+  // Run 'task_configure_blocks' task
+  if ($task == 'task_configure_blocks') {
+      configure_blocks();
+      $task = 'task_configure_gcal_events';
+  }
 
-	// Run 'task_configure_gcal_events' task
-	if ($task == 'task_configure_gcal_events') {
-    	configure_gcal_events();
-	   	$task = 'task_configure_cleanup';
-	}
+  // Run 'task_configure_gcal_events' task
+  if ($task == 'task_configure_gcal_events') {
+      configure_gcal_events();
+      $task = 'task_configure_cleanup';
+  }
 
-  	// Run 'task_configure_cleanup' task
+    // Run 'task_configure_cleanup' task
   if ($task == 'task_configure_cleanup') {
-  		drupal_flush_all_caches();
-    	drupal_cron_run();
-    	$task = 'profile-finished';
+      drupal_flush_all_caches();
+      drupal_cron_run();
+      $task = 'profile-finished';
   }
 
 }
 
 function get_theme_name() {
-	return 'primer';
+  return 'primer';
 }
 
 /**
@@ -311,7 +311,7 @@ function configure_theme() {
 function configure_editor() {
 
   $enable_modules = array(
-  	'tinymce_node_picker',
+    'tinymce_node_picker',
   );
 
   module_enable($enable_modules);
@@ -452,6 +452,11 @@ function configure_variables() {
   watchdog('d6primer_profile', 'Configured menu blocks');
 
   // Concigure input formats
+  // set FULL HTML as default input format
+  variable_set('filter_default_format', 2);
+  // now set all roles to be able to use this input format
+  db_query("UPDATE {filter_formats} SET roles = ',1,2,3,4,5' WHERE format = 2");
+
   // commenting out to see if this disables the HTML Filter for the input format (which was causing problems for inline images from wysiwyg)
   //variable_set('allowed_html_1', '<a> <em> <strong> <cite> <code> <ul> <ol> <li> <dl> <dt> <dd> <p> <span> <img> <div> <h3> <h4> <h5> <h6> <br> <blockquote> <table> <tbody> <tr> <th> <td> <sup> <sub>');
   //watchdog('d6primer_profile', 'Configured input formats');
@@ -486,7 +491,7 @@ function configure_users() {
   $permissions = array(
     'moderator' => get_moderator_permissions(),
     'anonymous user' => get_anonymous_permissions(),
-  	'authenticated user' => get_authenticated_permissions(),
+    'authenticated user' => get_authenticated_permissions(),
   );
   foreach ($permissions as $role => $perms) {
     // Add the role and get the role id.
@@ -678,12 +683,12 @@ function configure_backup_migrate() {
  */
 function enable_feature_primer_home_page_slider() {
     $enable_modules = array(
-  		'primer_home_page_slider',
-  	);
+      'primer_home_page_slider',
+    );
 
-  	module_enable($enable_modules);
+    module_enable($enable_modules);
 
-  	watchdog('d6primer_profile', 'Enabled home page slider feature');
+    watchdog('d6primer_profile', 'Enabled home page slider feature');
 };
 
 /**
@@ -691,38 +696,38 @@ function enable_feature_primer_home_page_slider() {
  */
 function configure_feature_primer_home_page_slider() {
 
-	/*
-	 *  @todo change this to actually look up the correct value.
-	 *
-	 *  Worked on this for a long time, but cannot get the query to work
-	 *  because the feature schema (i think) isn't ready yet, so there's
-	 *  no value in the DB when this runs.
-	 *
-	 *  So for now...just manualy insert of the term with a parent id of 1
-	 *  as it should be the only vocabulary
-	 *
-	 *  This will break things though if another module/feature is added that
-	 *  also create vocabularies before this is run
-	 *
-	 */
+  /*
+   *  @todo change this to actually look up the correct value.
+   *
+   *  Worked on this for a long time, but cannot get the query to work
+   *  because the feature schema (i think) isn't ready yet, so there's
+   *  no value in the DB when this runs.
+   *
+   *  So for now...just manualy insert of the term with a parent id of 1
+   *  as it should be the only vocabulary
+   *
+   *  This will break things though if another module/feature is added that
+   *  also create vocabularies before this is run
+   *
+   */
 
-	/*
-	$name = 'Syndication';
-	$limit = 1;
-	$query = db_query("SELECT * FROM {vocabulary} WHERE name = '%s' LIMIT %d", $name, $limit);
-	while ($row = db_fetch_array($query)) { // this returns the row as an array, use db_fetch_object to get an object
-	  $vid = $row['vid'];
-	}
-	*/
+  /*
+  $name = 'Syndication';
+  $limit = 1;
+  $query = db_query("SELECT * FROM {vocabulary} WHERE name = '%s' LIMIT %d", $name, $limit);
+  while ($row = db_fetch_array($query)) { // this returns the row as an array, use db_fetch_object to get an object
+    $vid = $row['vid'];
+  }
+  */
 
-  	$term = array(
-		'vid' => 1, // Vocabulary ID
-		'name' => 'Home Page Slider', // Term Name
-	);
+    $term = array(
+    'vid' => 1, // Vocabulary ID
+    'name' => 'Home Page Slider', // Term Name
+  );
 
-	taxonomy_save_term($term);
+  taxonomy_save_term($term);
 
-	watchdog('d6primer_profile', 'Configured home page slider feature');
+  watchdog('d6primer_profile', 'Configured home page slider feature');
 
 };
 
@@ -731,24 +736,24 @@ function configure_feature_primer_home_page_slider() {
  */
 function enable_feature_primer_photo_gallery() {
 
-	// enable these other modules in this function, because ctools needs to exist before these will work.
-	// otherwise you will get an error like:
-	// "Fatal error: Call to undefined function ctools_include() in ... context/context.module on line 459"
+  // enable these other modules in this function, because ctools needs to exist before these will work.
+  // otherwise you will get an error like:
+  // "Fatal error: Call to undefined function ctools_include() in ... context/context.module on line 459"
 
-	/* commenting out for testing purposes
+  /* commenting out for testing purposes
 
   $enable_modules = array(
-  		'context',
-    	'imagefield',
-    	'filefield',
-    	'primer_photo_gallery',
-  	);
+      'context',
+      'imagefield',
+      'filefield',
+      'primer_photo_gallery',
+    );
 
-  	module_enable($enable_modules);
+    module_enable($enable_modules);
 
     */
 
-  	watchdog('d6primer_profile', 'Enabled photo gallery feature');
+    watchdog('d6primer_profile', 'Enabled photo gallery feature');
 
 
 };
@@ -758,33 +763,33 @@ function enable_feature_primer_photo_gallery() {
  */
 function configure_feature_primer_photo_gallery() {
 
-	// no steps yet...just a place holder for now
+  // no steps yet...just a place holder for now
 
-	watchdog('d6primer_profile', 'Configured photo gallery feature');
+  watchdog('d6primer_profile', 'Configured photo gallery feature');
 
 };
 
 function create_first_node() {
 
-	$node = new StdClass();
-	//creating a bare node
+  $node = new StdClass();
+  //creating a bare node
 
-	$node->type = 'page';
-	//giving it type
+  $node->type = 'page';
+  //giving it type
 
-	$node->status = 1;
-	//give it a published staus
+  $node->status = 1;
+  //give it a published staus
 
-	$node->title = "Welcome";
-	//gives title
+  $node->title = "Welcome";
+  //gives title
 
-	$node->body = "This is a brand new website. An Administrator still needs to log in and update some content.";
-	//gives body
+  $node->body = "This is a brand new website. An Administrator still needs to log in and update some content.";
+  //gives body
 
-	node_save($node);
-	//save it and give it the rest of the attributes
+  node_save($node);
+  //save it and give it the rest of the attributes
 
-	 variable_set('site_frontpage', 'node/1');
+   variable_set('site_frontpage', 'node/1');
 
   watchdog('d6primer_profile', 'Added first node and set as home page');
 
@@ -792,7 +797,7 @@ function create_first_node() {
 
 function create_standard_menus() {
 
-	// Building menus
+  // Building menus
   $menus = array(
     'footer' => array(
       'menu_name' => 'menu-footer-links',
@@ -814,116 +819,116 @@ function create_standard_menus() {
 
 function create_standard_menu_links() {
 
-	$links = array(
-	    'home' => array(
-	      'menu_name' => 'menu-footer-links',
-	      'link_path' => '<front>',
-	      'link_title' => 'Home',
-	      'weight' => -50,
-	    ),
-	    'emergency' => array(
-	      'menu_name' => 'menu-footer-links',
-	      'link_path' => 'http://www.ncsu.edu/emergency-information',
-	      'link_title' => 'NC State Emergency Info',
-	      'weight' => -49,
-	    ),
-	    'privacy' => array(
-	      'menu_name' => 'menu-footer-links',
-	      'link_path' => 'http://www.ncsu.edu/privacy',
-	      'link_title' => 'Privacy Statement',
-	      'weight' => -48,
-	    ),
-	    'copyright' => array(
-	      'menu_name' => 'menu-footer-links',
-	      'link_path' => 'http://www.ncsu.edu/copyright',
-	      'link_title' => 'Copyright',
-	      'weight' => -47,
-	    ),
-	    'accessibility' => array(
-	      'menu_name' => 'menu-footer-links',
-	      'link_path' => 'http://ncsu.edu/it/access/legal/webreg.php',
-	      'link_title' => 'Accessibility',
-	      'weight' => -46,
-	    ),
-	    'diversity' => array(
-	      'menu_name' => 'menu-footer-links',
-	      'link_path' => 'http://www.ncsu.edu/oied/',
-	      'link_title' => 'Diversity',
-	      'weight' => -45,
-	    ),
-	    'university_policies' => array(
-	      'menu_name' => 'menu-footer-links',
-	      'link_path' => 'http://policies.ncsu.edu/',
-	      'link_title' => 'University Policies',
-	      'weight' => -44,
-	    ),
-	    'contact' => array(
-	      'menu_name' => 'menu-footer-links',
-	      'link_path' => 'contact',
-	      'link_title' => 'Contact Us',
-	      'weight' => -43,
-	    ),
-	    'front' => array(
-	      'menu_name' => 'menu-horiz-main-menu',
-	      'link_path' => '<front>',
-	      'link_title' => 'Home',
-	      'weight' => -50,
-	    ),
-	    'feedback' => array(
-	      'menu_name' => 'menu-horiz-main-menu',
-	      'link_path' => 'contact',
-	      'link_title' => 'Contact Us',
-	      'weight' => -49,
-	    ),
-	);
+  $links = array(
+      'home' => array(
+        'menu_name' => 'menu-footer-links',
+        'link_path' => '<front>',
+        'link_title' => 'Home',
+        'weight' => -50,
+      ),
+      'emergency' => array(
+        'menu_name' => 'menu-footer-links',
+        'link_path' => 'http://www.ncsu.edu/emergency-information',
+        'link_title' => 'NC State Emergency Info',
+        'weight' => -49,
+      ),
+      'privacy' => array(
+        'menu_name' => 'menu-footer-links',
+        'link_path' => 'http://www.ncsu.edu/privacy',
+        'link_title' => 'Privacy Statement',
+        'weight' => -48,
+      ),
+      'copyright' => array(
+        'menu_name' => 'menu-footer-links',
+        'link_path' => 'http://www.ncsu.edu/copyright',
+        'link_title' => 'Copyright',
+        'weight' => -47,
+      ),
+      'accessibility' => array(
+        'menu_name' => 'menu-footer-links',
+        'link_path' => 'http://ncsu.edu/it/access/legal/webreg.php',
+        'link_title' => 'Accessibility',
+        'weight' => -46,
+      ),
+      'diversity' => array(
+        'menu_name' => 'menu-footer-links',
+        'link_path' => 'http://www.ncsu.edu/oied/',
+        'link_title' => 'Diversity',
+        'weight' => -45,
+      ),
+      'university_policies' => array(
+        'menu_name' => 'menu-footer-links',
+        'link_path' => 'http://policies.ncsu.edu/',
+        'link_title' => 'University Policies',
+        'weight' => -44,
+      ),
+      'contact' => array(
+        'menu_name' => 'menu-footer-links',
+        'link_path' => 'contact',
+        'link_title' => 'Contact Us',
+        'weight' => -43,
+      ),
+      'front' => array(
+        'menu_name' => 'menu-horiz-main-menu',
+        'link_path' => '<front>',
+        'link_title' => 'Home',
+        'weight' => -50,
+      ),
+      'feedback' => array(
+        'menu_name' => 'menu-horiz-main-menu',
+        'link_path' => 'contact',
+        'link_title' => 'Contact Us',
+        'weight' => -49,
+      ),
+  );
 
-	foreach ($links as $link) {
-		menu_link_save($link);
-	}
+  foreach ($links as $link) {
+    menu_link_save($link);
+  }
 
 }
 
 function configure_blocks() {
 
-	db_query("UPDATE {blocks} SET status = 0 where theme = '%s'", get_theme_name());
+  db_query("UPDATE {blocks} SET status = 0 where theme = '%s'", get_theme_name());
 
-	$blocks = array(
-	    'footer-links' => array(
-	      'module' => 'menu',
-	      'delta' => 'menu-footer-links',
-	      'theme' => get_theme_name(),
-	      'status' => 1,
-	      'region' => 'footer_menu',
-	      'title' => '<none>',
-	      'weight' => '-9',
-	    ),
-	    'networking-links' => array(
-	      'module' => 'menu',
-	      'delta' => 'menu-horiz-main-menu',
-	      'theme' => get_theme_name(),
-	      'status' => 1,
-	      'region' => 'horizontal_main_menu',
-	      'title' => '<none>',
-	      'weight' => '-8',
-	    ),
-	    'search' => array(
-	      'module' => 'search',
-	      'delta' => '0',
-	      'theme' => get_theme_name(),
-	      'status' => 1,
-	      'region' => 'header_search',
-	      'title' => 'Search',
-	      'weight' => '-10',
-	    ),
-	    'wraplogin_block' => array(
-	      'module' => 'wraplogin',
-	      'delta' => '0',
-	      'theme' => get_theme_name(),
-	      'status' => 1,
-	      'region' => 'header_small_right_menu',
-	      'title' => '<none>',
-	      'weight' => '-6',
-	    ),
+  $blocks = array(
+      'footer-links' => array(
+        'module' => 'menu',
+        'delta' => 'menu-footer-links',
+        'theme' => get_theme_name(),
+        'status' => 1,
+        'region' => 'footer_menu',
+        'title' => '<none>',
+        'weight' => '-9',
+      ),
+      'networking-links' => array(
+        'module' => 'menu',
+        'delta' => 'menu-horiz-main-menu',
+        'theme' => get_theme_name(),
+        'status' => 1,
+        'region' => 'horizontal_main_menu',
+        'title' => '<none>',
+        'weight' => '-8',
+      ),
+      'search' => array(
+        'module' => 'search',
+        'delta' => '0',
+        'theme' => get_theme_name(),
+        'status' => 1,
+        'region' => 'header_search',
+        'title' => 'Search',
+        'weight' => '-10',
+      ),
+      'wraplogin_block' => array(
+        'module' => 'wraplogin',
+        'delta' => '0',
+        'theme' => get_theme_name(),
+        'status' => 1,
+        'region' => 'header_small_right_menu',
+        'title' => '<none>',
+        'weight' => '-6',
+      ),
     );
 
   foreach ($blocks as $block) {
@@ -937,18 +942,18 @@ function configure_blocks() {
 
 function configure_gcal_events() {
 
-	// get gcal_events directory
-	$modulePath = drupal_get_path('module', 'gcal_events');
+  // get gcal_events directory
+  $modulePath = drupal_get_path('module', 'gcal_events');
 
   $cacheParent = file_directory_path() . '/gcal_events';
   $cachePath = $cacheParent . '/cache';
 
-	$simplePieLibraryPath = libraries_get_path('simplepie');
+  $simplePieLibraryPath = libraries_get_path('simplepie');
 
-	// module stores cache in files directory (since dev version)
+  // module stores cache in files directory (since dev version)
 
   // create cache directory in files directory, make writable by server
-	if(!is_dir($cacheParent)) {
+  if(!is_dir($cacheParent)) {
     mkdir($cacheParent, 0755, false);
   }
   if(!is_dir($cachePath)) {
@@ -961,47 +966,47 @@ function configure_gcal_events() {
   }
 
 
-	// copy simplepie.inc from libraries directory to gcal_events directory
-	if(!file_exists($modulePath . '/simplepie.inc')) {
+  // copy simplepie.inc from libraries directory to gcal_events directory
+  if(!file_exists($modulePath . '/simplepie.inc')) {
     copy($simplePieLibraryPath . '/simplepie.inc', $modulePath . '/simplepie.inc');
   }
 
-	watchdog('d6primer_profile', 'Configured GCal Events Module');
+  watchdog('d6primer_profile', 'Configured GCal Events Module');
 
-	variable_set('gcal_events_num_blocks', 1);
+  variable_set('gcal_events_num_blocks', 1);
   variable_set('gcal_events_item_list', 0);
 
-	$delta = 0;
-	$private_id = '927973de0296fbd3520681e5bd96f921';
+  $delta = 0;
+  $private_id = '927973de0296fbd3520681e5bd96f921';
 
-	//variable_set('gcal_events_private_id_'. $delta, $private_id);
-	variable_set('gcal_events_block_'. $delta, $delta);
-	variable_set('gcal_events_admin_name_'. $delta, 'NC State Academic Calendar');
-	variable_set('gcal_events_calendar_id_'. $delta, 'ncsu.edu_507c8794r25bnebhjrrh3i5c4s@group.calendar.google.com');
-	variable_set('gcal_events_cache_duration_'. $delta, '3600');
-	variable_set('gcal_events_num_events_'. $delta, '5');
-	variable_set('gcal_events_dateformat_'. $delta, 'j F, Y');
-	variable_set('gcal_events_timeformat_'. $delta, 'g:ia');
-	variable_set('gcal_events_template_event_'. $delta, '<div class="gcal_block_event"><span class="element date">#DATE#</span><span class="element time">#TIME#</span><span class="element title">#TITLE#</span><span class="element location">#LOC#</span></div>');
-	variable_set('gcal_events_template_title_'. $delta, '<a target="_blank" title="#TITLE#" href="#URL#">#TITLE#</a>');
-	variable_set('gcal_events_template_desc_'. $delta, '#DESC#');
-	variable_set('gcal_events_template_date_'. $delta, '#DATE#');
-	variable_set('gcal_events_template_time_'. $delta, '#TIME#');
-	variable_set('gcal_events_template_loc_'. $delta, '#LOC#');
-	variable_set('gcal_events_empty_'. $delta, 'No events to display');
-	variable_set('gcal_events_footer_'. $delta, '<a href="http://go.ncsu.edu/drupal-acad-calendar-more-link" target="_blank" title="Subscribe & view all events">Subscribe & view all events</a>');
+  //variable_set('gcal_events_private_id_'. $delta, $private_id);
+  variable_set('gcal_events_block_'. $delta, $delta);
+  variable_set('gcal_events_admin_name_'. $delta, 'NC State Academic Calendar');
+  variable_set('gcal_events_calendar_id_'. $delta, 'ncsu.edu_507c8794r25bnebhjrrh3i5c4s@group.calendar.google.com');
+  variable_set('gcal_events_cache_duration_'. $delta, '3600');
+  variable_set('gcal_events_num_events_'. $delta, '5');
+  variable_set('gcal_events_dateformat_'. $delta, 'j F, Y');
+  variable_set('gcal_events_timeformat_'. $delta, 'g:ia');
+  variable_set('gcal_events_template_event_'. $delta, '<div class="gcal_block_event"><span class="element date">#DATE#</span><span class="element time">#TIME#</span><span class="element title">#TITLE#</span><span class="element location">#LOC#</span></div>');
+  variable_set('gcal_events_template_title_'. $delta, '<a target="_blank" title="#TITLE#" href="#URL#">#TITLE#</a>');
+  variable_set('gcal_events_template_desc_'. $delta, '#DESC#');
+  variable_set('gcal_events_template_date_'. $delta, '#DATE#');
+  variable_set('gcal_events_template_time_'. $delta, '#TIME#');
+  variable_set('gcal_events_template_loc_'. $delta, '#LOC#');
+  variable_set('gcal_events_empty_'. $delta, 'No events to display');
+  variable_set('gcal_events_footer_'. $delta, '<a href="http://go.ncsu.edu/drupal-acad-calendar-more-link" target="_blank" title="Subscribe & view all events">Subscribe & view all events</a>');
 
-	//configure first calendar block for gcal events to use NC State Academic Calendar
-	$blocks = array(
-	    'gcal_events_private_id_'. $delta => array(
-	      	'module' 								=> 'gcal_events',
-		    'delta' 								=> $delta,
-		    'title' 								=> 'NC State Academic Calendar',
-			'region' 								=> 'right_above_sidebar',
-			'weight' 								=> '-6',
-			'status' 								=> 1,
-			'theme' 								=> get_theme_name(),
-	    ),
+  //configure first calendar block for gcal events to use NC State Academic Calendar
+  $blocks = array(
+      'gcal_events_private_id_'. $delta => array(
+          'module'                => 'gcal_events',
+        'delta'                 => $delta,
+        'title'                 => 'NC State Academic Calendar',
+      'region'                => 'right_above_sidebar',
+      'weight'                => '-6',
+      'status'                => 1,
+      'theme'                 => get_theme_name(),
+      ),
     );
 
   foreach ($blocks as $block) {
