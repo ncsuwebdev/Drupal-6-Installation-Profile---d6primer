@@ -975,6 +975,7 @@ function configure_gcal_events() {
 
   variable_set('gcal_events_num_blocks', 1);
   variable_set('gcal_events_item_list', 0);
+  variable_set('gcal_events_input_format', 2);
 
   $delta = 0;
   $private_id = '927973de0296fbd3520681e5bd96f921';
