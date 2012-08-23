@@ -50,6 +50,9 @@ projects[ctools][version] = 1.9
 projects[date][subdir] = contrib
 projects[date][version] = 2.8
 
+projects[demo][subdir] = contrib
+projects[demo][version] = 1.4
+
 projects[disable_messages][subdir] = contrib
 projects[disable_messages][version] = 1.1
 
