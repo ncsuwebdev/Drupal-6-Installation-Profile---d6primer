@@ -104,6 +104,9 @@ projects[imce_wysiwyg][version] = 1.1
 projects[imce][subdir] = contrib
 projects[imce][version] = 2.3
 
+projects[job_scheduler][subdir] = contrib
+projects[job_scheduler][version] = 1.0-beta3
+
 projects[jquery_ui][subdir] = contrib
 projects[jquery_ui][version] = 1.5
 
