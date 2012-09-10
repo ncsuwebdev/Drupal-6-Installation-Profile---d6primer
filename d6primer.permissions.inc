@@ -42,7 +42,7 @@ function get_moderator_permissions() {
     'administer taxonomy',
   	'administer views',
   	'access all webform results',
-  	'administer users'.
+  	'administer users',
   	'administer site configuration',
   	'administer primer manager',
     'use advanced search',
@@ -60,7 +60,7 @@ function get_anonymous_permissions() {
     'access content',
     'search content',
     'view uploaded files',
-  	'access all views', 
+  	'access all views',
   	'access site-wide contact form',
   	'view field_photo_gallery_images',
   );
