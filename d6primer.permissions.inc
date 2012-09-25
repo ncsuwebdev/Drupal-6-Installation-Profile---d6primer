@@ -48,6 +48,7 @@ function get_moderator_permissions() {
     'use advanced search',
     'access user profiles',
     'configure primer theme',
+    'select different theme',
     'administer roles',
   );
 }
