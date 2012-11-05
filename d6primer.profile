@@ -967,7 +967,7 @@ function configure_gcal_events() {
 
   // copy SimplePie.compiled.php from libraries directory to gcal_events directory as simplepie.inc
   if(!file_exists($modulePath . '/simplepie.inc')) {
-    copy($simplePieLibraryPath . '/SimplePie.compiled.php', $modulePath . '/simplepie.inc');
+    copy($simplePieLibraryPath . '/simplepie-1.3.1.inc', $modulePath . '/simplepie.inc');
   }
 
   watchdog('d6primer_profile', 'Configured GCal Events Module');
