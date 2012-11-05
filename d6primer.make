@@ -250,11 +250,11 @@ libraries[simplepie][download][url] = "http://drupal.ncsu.edu/resources/librarie
 ; ************************
 
 projects[primer][subdir] = ncstate
-projects[primer][version] = 3.7
+projects[primer][version] = 3.8
 projects[primer][location] = http://drupal.ncsu.edu/features/fserver
 
 projects[primermanager][subdir] = ncstate
-projects[primermanager][version] = 1.2
+projects[primermanager][version] = 1.3
 projects[primermanager][location] = http://drupal.ncsu.edu/features/fserver
 
 projects[wraplogin][subdir] = ncstate
