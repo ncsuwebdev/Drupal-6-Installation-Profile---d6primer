@@ -179,6 +179,9 @@ projects[strongarm][version] = 2.2
 projects[system_perm][subdir] = contrib
 projects[system_perm][version] = 1.0
 
+projects[taxonomy_hide][subdir] = contrib
+projects[taxonomy_hide][version] = 1.02
+
 projects[tinymce_node_picker][subdir] = contrib
 projects[tinymce_node_picker][version] = 2.1
 
