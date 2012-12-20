@@ -5,7 +5,7 @@
 core = 6.x
 api = 2
 
-projects[drupal][version] = 6.26
+projects[drupal][version] = 6.27
 
 ; ************************
 ; CONTRIB MODULES
@@ -45,7 +45,7 @@ projects[css_injector][subdir] = contrib
 projects[css_injector][version] = 1.4
 
 projects[ctools][subdir] = contrib
-projects[ctools][version] = 1.9
+projects[ctools][version] = 1.10
 
 projects[date][subdir] = contrib
 projects[date][version] = 2.8
@@ -102,7 +102,7 @@ projects[imce_wysiwyg][subdir] = contrib
 projects[imce_wysiwyg][version] = 1.1
 
 projects[imce][subdir] = contrib
-projects[imce][version] = 2.3
+projects[imce][version] = 2.4
 
 projects[job_scheduler][subdir] = contrib
 projects[job_scheduler][version] = 1.0-beta3
