@@ -106,6 +106,7 @@ function d6primer_profile_modules() {
     'ncsuroles',
     'wraplogin',
     'primermanager',
+    'accessibletargetblankfilter',
   );
 
   return array_merge($core_modules, $contrib_modules, $custom_modules);

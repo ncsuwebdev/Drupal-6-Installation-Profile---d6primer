@@ -250,7 +250,7 @@ libraries[simplepie][download][url] = "http://drupal.ncsu.edu/resources/librarie
 ; ************************
 
 projects[primer][subdir] = ncstate
-projects[primer][version] = 3.9
+projects[primer][version] = 4.0
 projects[primer][location] = http://drupal.ncsu.edu/features/fserver
 
 projects[primermanager][subdir] = ncstate
@@ -278,6 +278,10 @@ projects[d6primergeneralfeature][subdir] = ncstate
 projects[d6primergeneralfeature][download][type] = git
 projects[d6primergeneralfeature][download][url] = git://github.com/ncsuwebdev/Drupal-6-Installation-Profile---General-Feature-Module.git
 projects[d6primergeneralfeature][download][branch] = 6.x-1.10
+
+projects[accessibletargetblankfeature][subdir] = ncstate
+projects[accessibletargetblankfeature][version] = 1.0
+projects[accessibletargetblankfeature][location] = http://drupal.ncsu.edu/features/fserver
 
 ; ************************
 ; NC STATE FEATURES
