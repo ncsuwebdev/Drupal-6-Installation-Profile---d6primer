@@ -60,7 +60,6 @@ function d6primer_profile_modules() {
     'content',
     'css_injector',
     'ctools',
-    'extlink',
     'features',
     'gcal_events',
     'image_attach',
