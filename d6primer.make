@@ -279,9 +279,9 @@ projects[d6primergeneralfeature][download][type] = git
 projects[d6primergeneralfeature][download][url] = git://github.com/ncsuwebdev/Drupal-6-Installation-Profile---General-Feature-Module.git
 projects[d6primergeneralfeature][download][branch] = 6.x-1.10
 
-projects[accessibletargetblankfeature][subdir] = ncstate
-projects[accessibletargetblankfeature][version] = 1.0
-projects[accessibletargetblankfeature][location] = http://drupal.ncsu.edu/features/fserver
+projects[accessibletargetblankfilter][subdir] = ncstate
+projects[accessibletargetblankfilter][version] = 1.0
+projects[accessibletargetblankfilter][location] = http://drupal.ncsu.edu/features/fserver
 
 ; ************************
 ; NC STATE FEATURES
