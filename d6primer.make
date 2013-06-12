@@ -261,11 +261,9 @@ libraries[simplepie][download][url] = "http://drupal.ncsu.edu/resources/librarie
 ; NC STATE MODULES & THEMES
 ; ************************
 
-projects[primer][type] = theme
 projects[primer][subdir] = ncstate
-projects[primer][download][type] = git
-projects[primer][download][branch] = 6.x-4.1
-projects[primer][location] = git://github.com/ncsuwebdev/Drupal-6-Theme---Primer.git
+projects[primer][download][version] = 4.1
+projects[primer][location] = http://drupal.ncsu.edu/features/fserver
 
 projects[primermanager][subdir] = ncstate
 projects[primermanager][version] = 1.3
